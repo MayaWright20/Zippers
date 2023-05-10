@@ -1,0 +1,27 @@
+export const Colors = {
+    LightBlue : 'rgb(159, 218, 255)',
+    DarkBlue: 'rgb(64, 80, 255)',
+    HotPink : 'rgb(255, 101, 163)',
+    Peach : 'rgb(255, 124, 72)',
+    LightPink : 'rgb(255, 218, 233)',
+    LightPurple : 'rgb(208,174,197)',
+    RoyalPurple : 'rgb(168,45,139)',
+    Yellow : 'rgb(255, 247, 21)',
+    BabyPink : 'rgb(252,201,221)',
+    MintGreen : 'rgb(159, 255, 94)',
+    DarkGreen : 'rgb(75, 173, 57)',
+    LightAqua : 'rgb(178, 255, 243)',
+    DarkAqua : 'rgb(111, 241, 233)',
+    Red : 'rgb(251, 62, 62)',
+    LightBlueDarkBlue : ['rgb(159, 218, 255)', 'rgb(103,112,178)'],
+    LightBlueHotPink : ['rgb(159, 218, 255)', 'rgb(225,66,84)' ],
+    LightBluePeach : ['rgb(207,232,250)','rgb(255, 150, 108)'],
+    LightPinkHotPink : ['rgb(249,212,227)','rgb(231,52,117)'],
+    LightPurpleRoyalPurple : ['rgb(208,174,197)','rgb(168,45,139)'],
+    YellowBabyPink : ['rgb(255, 247, 21)', 'rgb(252,201,221)'],
+    MintGreenDarkGreen : ['rgb(190, 255, 147)','rgb(99,176,86)'],
+    LightAquaDarkAqua : ['rgb(178, 255, 243)', 'rgb(89,192,185)'],
+    YellowRed : ['rgb(255, 247, 21)', 'rgb(251, 62, 62)'],
+    YellowAqua : ['rgb(255, 247, 21)', 'rgb(178, 255, 243)']
+}
+
