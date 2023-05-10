@@ -78,16 +78,12 @@ export default function AuthScreen({ navigation }) {
     const Item = ({ item, authScreenBackgroundColor, buttonColor, topScreenGif, authScreenBackgroundImage }: ItemProps) => (
         <ImageBackground source={item.authScreenBackgroundImage ? { uri: item.authScreenBackgroundImage } : null} resizeMode="cover" style={styles.container}>
             <View style={[styles.container, { backgroundColor: item.authScreenBackgroundColor, paddingBottom: 40 }]}>
-
                 <SafeAreaView style={styles.container}>
                     <View style={styles.authContentContainer}>
                         <View>
                             <ZippersButton position='relative' />
                             <TopScreenGif source={item.topScreenGif ? { uri: item.topScreenGif } : null} />
-
-
                         </View>
-
                         <View>
                             <ZippersBackgroundText />
                             <Paginator data={DATA} scrollX={scrollX} />
@@ -96,9 +92,7 @@ export default function AuthScreen({ navigation }) {
                         </View>
                     </View>
                 </SafeAreaView>
-
             </View>
-
         </ImageBackground>
     );
 
@@ -117,8 +111,6 @@ export default function AuthScreen({ navigation }) {
             renderItem={renderItem}
             keyExtractor={item => item.id}
             horizontal={true}
-            snapToOffsets={[]}
-            snapToAlignment={"center"}
             pagingEnabled={true}
             showsHorizontalScrollIndicator={false}
             onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], {
