@@ -17,11 +17,11 @@ const styles =  StyleSheet.create({
         zIndex: 10,
         width: '30%',
         alignSelf: 'center',
-        // position: "relative",
-        top: 5
+        top: 5,
+        borderRadius: 60,
+        backgroundColor: Colors.LightAqua,
     },
     zippersButton: {
-        backgroundColor: Colors.LightAqua,
         color: Colors.DarkBlue,
         textAlign: 'center',
         paddingHorizontal: 20,
