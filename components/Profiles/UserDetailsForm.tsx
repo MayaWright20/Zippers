@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { View, FlatList, Button, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import FormInput from '../../components/FormInput';
 import { Colors } from '../../constants/Colors';
 import { FormStyling } from '../../constants/FormStyling';
+
+import FormInput from '../../components/FormInput';
 import BackButton from '../Buttons/BackButton';
 import Constants from 'expo-constants';
+import PhotoPicker from '../Photos/PhotoPicker';
 
 export default function UserDetailsForm(){
 
@@ -18,10 +20,6 @@ export default function UserDetailsForm(){
             name: enteredName,
             alias: enteredAlias,
         });
-    }
-
-    function h(){
-        console.log(Constants.systemFonts);
     }
 
     function updateInputValueHandler(inputType, enteredValue) {
@@ -52,11 +50,12 @@ export default function UserDetailsForm(){
                 placeholder={null}
                 />
 
+                <PhotoPicker/>
                 <FlatList data={undefined} renderItem={undefined}/>
                 
-                <Button title='Next 👉' onPress={h}/>
+                <Button title='Next 👉' onPress={undefined}/>
             </View>
-             
+            
             {/* Button that says next - links to other modal view that asks about who youre trying to find. e.g interested in men, women, all, how face they can be, age range */}
         </View>
     )
