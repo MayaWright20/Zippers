@@ -10,22 +10,33 @@ import BackButton from '../Buttons/BackButton';
 import Constants from 'expo-constants';
 import PhotoPicker from '../Photos/PhotoPicker';
 import AddLocation from '../Location/AddLocation';
-import AddMap from '../Location/AddMap';
+import { User } from '../../models/user';
 
-export default function UserDetailsForm(){
+export default function UserDetailsForm() {
 
-    const [ enteredName, setEnteredName ] = useState('');
-    const [ enteredAlias, setEnteredAlias ] = useState('');
+    const [enteredName, setEnteredName] = useState('');
+    const [enteredAlias, setEnteredAlias] = useState('');
 
-    function submitHandler() {
-        onSubmit({
-            name: enteredName,
-            alias: enteredAlias,
-        });
+    const [ userCity, setUserCity ] = useState('');
+
+    function updateUserCity(cityValue) {
+        setUserCity(cityValue);
+    }
+
+    const [ userLocation, setUserLocation ] = useState([]);
+
+    function updateUserLocation( location ){
+        setUserLocation( location )
+    }
+
+    const [ userPhotos, setUserPhotos ] = useState([]);
+
+    function updateUserPhotos( photos ){
+        setUserPhotos( photos );
     }
 
     function updateInputValueHandler(inputType, enteredValue) {
-        switch( inputType ){
+        switch (inputType) {
             case 'name':
                 console.log('name', inputType, enteredValue)
                 setEnteredName(enteredValue);
@@ -36,28 +47,36 @@ export default function UserDetailsForm(){
         }
     }
 
-    return(
-        <View style={[{ ...FormStyling.formContainer, backgroundColor: 'pink', flex: 1}]}>
+    function userDetailsFormHandler() {
+        const user = new User( enteredName, enteredAlias, userPhotos, userLocation, userCity );
+    }
+
+    return (
+        <View style={[{ ...FormStyling.formContainer, backgroundColor: 'pink', flex: 1 }]}>
             <View>
                 <FormInput label="Name (Not shown on profile)" labelStyle={{ color: 'black' }} inputStyle={{ backgroundColor: Colors.LightAqua }}
-                onChangeText={updateInputValueHandler.bind(this, 'name')}
-                value={enteredName}
-                isInvalid={undefined}
-                placeholder={null}
+                    onChangeText={updateInputValueHandler.bind(this, 'name')}
+                    value={enteredName}
+                    isInvalid={undefined}
+                    placeholder={null}
                 />
                 <FormInput label="Alias" labelStyle={{ color: 'black' }} inputStyle={{ backgroundColor: Colors.LightAqua }}
-                onChangeText={updateInputValueHandler.bind(this, 'alias')}
-                value={enteredAlias}
-                isInvalid={undefined}
-                placeholder={null}
+                    onChangeText={updateInputValueHandler.bind(this, 'alias')}
+                    value={enteredAlias}
+                    isInvalid={undefined}
+                    placeholder={null}
                 />
-                <PhotoPicker/>
-                <AddLocation/>
-                
-                
-                <Button title='Next 👉' onPress={undefined}/>
+
+                <AddLocation updateUserLocation={updateUserLocation} updateUserCity={updateUserCity} />
+
+
+
+                <PhotoPicker updateUserPhotos={updateUserPhotos}/>
+
+
+                <Button title='Next 👉' onPress={userDetailsFormHandler} />
             </View>
-            
+
             {/* Button that says next - links to other modal view that asks about who youre trying to find. e.g interested in men, women, all, how face they can be, age range */}
         </View>
     )

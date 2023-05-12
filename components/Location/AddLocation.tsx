@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Platform, Text, View, StyleSheet, Image, Button } from 'react-native';
-
+import { Text, View, Button } from 'react-native';
 import * as Location from 'expo-location';
+
 import { getAddress } from '../../utils/location';
 
-export default function AddLocation() {
-    const [location, setLocation] = useState(null);
-    const [ city, setCity ] = useState('')
+export default function AddLocation({ updateUserLocation, updateUserCity }) {
+
+    const [ location, setLocation ] = useState(null);
+    const [ city, setCity ] = useState('');
+
 
     useEffect(() => {
         (async () => {
@@ -32,15 +34,17 @@ export default function AddLocation() {
             long = JSON.stringify(location.coords.longitude);
         }
 
-        async function handleLocation(){
+        async function handleLocation() {
             const currentPosisiton = await getAddress(lat, long);
-            console.log("CURRENT POSITION",currentPosisiton)
             setCity(currentPosisiton);
+            updateUserLocation([lat, long])
+            updateUserCity(currentPosisiton);
         }
 
         handleLocation();
         
     }
+    
 
     return (
         <View>

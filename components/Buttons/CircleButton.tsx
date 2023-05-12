@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pressable, View, Text, StyleSheet, Dimensions } from 'react-native';
+import { Pressable, View, Text, StyleSheet } from 'react-native';
 
 import { WindowWidth  } from '../../constants/Dimentions';
 

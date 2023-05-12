@@ -5,9 +5,9 @@ import * as ImagePicker from 'expo-image-picker';
 import { WindowWidth } from '../../constants/Dimentions';
 import { Colors } from '../../constants/Colors';
 
-export default function PhotoPicker() {
+export default function PhotoPicker({updateUserPhotos}) {
 
-    const [imageResults, setImageResults] = useState([]);
+    const [ imageResults, setImageResults ] = useState([]);
 
     const pickImage = async () => {
 
@@ -20,12 +20,12 @@ export default function PhotoPicker() {
 
         if (!results.canceled) {
             setImageResults(results.assets)
+            updateUserPhotos(results.assets)
         }
     }
 
     return (
         <View>
-
             <Button title="Add Photos 📸" onPress={pickImage} />
             <View style={[{ backgroundColor: Colors.LightAqua, padding: 5, borderRadius: 20, overflow:'hidden' }]}>
                 {imageResults && <FlatList horizontal={true}  data={imageResults} renderItem={({ item }) => {
