@@ -12,6 +12,12 @@
         {
           "photosPermission": "Allow Zippers to access your photos"
         }
+      ],
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
+        }
       ]
     ],
     "splash": {

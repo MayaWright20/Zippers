@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, FlatList, Button, Text } from 'react-native';
+import { View, Button, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { Colors } from '../../constants/Colors';
@@ -9,6 +9,8 @@ import FormInput from '../../components/FormInput';
 import BackButton from '../Buttons/BackButton';
 import Constants from 'expo-constants';
 import PhotoPicker from '../Photos/PhotoPicker';
+import AddLocation from '../Location/AddLocation';
+import AddMap from '../Location/AddMap';
 
 export default function UserDetailsForm(){
 
@@ -49,9 +51,9 @@ export default function UserDetailsForm(){
                 isInvalid={undefined}
                 placeholder={null}
                 />
-
                 <PhotoPicker/>
-                <FlatList data={undefined} renderItem={undefined}/>
+                <AddLocation/>
+                
                 
                 <Button title='Next 👉' onPress={undefined}/>
             </View>

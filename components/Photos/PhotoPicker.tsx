@@ -26,7 +26,7 @@ export default function PhotoPicker() {
     return (
         <View>
 
-            <Button title="Pick images from camera roll" onPress={pickImage} />
+            <Button title="Add Photos 📸" onPress={pickImage} />
             <View style={[{ backgroundColor: Colors.LightAqua, padding: 5, borderRadius: 20, overflow:'hidden' }]}>
                 {imageResults && <FlatList horizontal={true}  data={imageResults} renderItem={({ item }) => {
                     return <Image source={{ uri: item.uri }} style={[{ width: WindowWidth / 3, height: WindowWidth / 3, borderRadius: 20 }]} />;
