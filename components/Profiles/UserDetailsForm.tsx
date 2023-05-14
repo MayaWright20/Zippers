@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Button, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
+import { User } from '../../models/user';
 import { Colors } from '../../constants/Colors';
 import { FormStyling } from '../../constants/FormStyling';
 
@@ -10,7 +11,6 @@ import BackButton from '../Buttons/BackButton';
 import Constants from 'expo-constants';
 import PhotoPicker from '../Photos/PhotoPicker';
 import AddLocation from '../Location/AddLocation';
-import { User } from '../../models/user';
 
 export default function UserDetailsForm() {
 
@@ -49,6 +49,7 @@ export default function UserDetailsForm() {
 
     function userDetailsFormHandler() {
         const user = new User( enteredName, enteredAlias, userPhotos, userLocation, userCity );
+        console.log('send user to firebase', user)
     }
 
     return (
@@ -72,7 +73,6 @@ export default function UserDetailsForm() {
 
 
                 <PhotoPicker updateUserPhotos={updateUserPhotos}/>
-
 
                 <Button title='Next 👉' onPress={userDetailsFormHandler} />
             </View>

@@ -1,5 +1,5 @@
 export class User{
-    constructor( enteredName, enteredAlias, userPhotos, userLocation, userCity){
+    constructor( enteredName, enteredAlias, userPhotos, userLocation, userCity ){
         this.enteredName = enteredName;
         this.enteredAlias = enteredAlias;
         this.userPhotos = userPhotos;

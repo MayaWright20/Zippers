@@ -144,7 +144,7 @@ export default function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
                     />
                 </View>
             )}
-            <Button title={ !isLogin ? 'Sign up 👉' : 'Log in 👉'} onPress={submitHandler}>{ isLogin ? 'Log In' : 'Sign Up' }</Button>
+            <Button title={ !isLogin ? 'Sign up 👉' : 'Log in 👉'} onPress={submitHandler}/>
         </View>
     )
 }
