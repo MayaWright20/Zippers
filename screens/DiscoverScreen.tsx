@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Image, SafeAreaView, ScrollView, PanResponder }
 
 import AnimatedProfileCard from '../components/Profiles/AnimatedProfileCard';
 import { WINDOW_HEIGHT, WINDOW_WIDTH } from '../constants/DIMENSIONS';
+import ZippersButton from '../components/Buttons/ZippersButtons';
 
 
 export default function DiscoverScreen() {
@@ -20,13 +21,10 @@ export default function DiscoverScreen() {
     function renderProfileCard(item) {
         return (
                 <View key={item.id} style={[styles.profileCardContainer, styles.box]}>
-                    <Image width={100} height={100} source={{ uri: item.uri }} />
+                    <Image style={{ width: 100, height: 100}} source={{ uri: item.uri }} />
                     <Text>{item.text}</Text>
                     <Text>hi</Text>
                 </View>
-            
-
-
         )
     }
 
@@ -38,6 +36,9 @@ export default function DiscoverScreen() {
         )
     }
 
+    function onSwipeRight(){
+        console.log("IVE SWIPPPPPPED", "DATA",DATA, "data.item")   
+    }
     
 
 
@@ -45,7 +46,8 @@ export default function DiscoverScreen() {
     return (
         <View style={styles.discoverScreenContainer}>
             <SafeAreaView>
-                <AnimatedProfileCard data={DATA} renderProfileCard={renderProfileCard} onSwipeRight={()=>{console.log("Have swiped right")}} onSwipeLeft={()=>{console.log("Have swiped left")}} noMoreProfilesAvaliable={noMoreProfilesAvaliable}/>
+                <ZippersButton/>
+                <AnimatedProfileCard data={DATA} renderProfileCard={renderProfileCard} onSwipeRight={onSwipeRight} onSwipeLeft={()=>{console.log("Have swiped left should add rewind functionality")}} noMoreProfilesAvaliable={noMoreProfilesAvaliable}/>
             </SafeAreaView>
         </View>
 

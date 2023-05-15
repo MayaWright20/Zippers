@@ -3,6 +3,7 @@ import { Animated, PanResponder, View, Text, StyleSheet, SafeAreaView, LayoutAni
 
 import { WINDOW_HEIGHT, WINDOW_WIDTH } from '../../constants/DIMENSIONS';
 import ZippersBackground from '../Background/ZippersBackground';
+import { COLORS } from '../../constants/COLORS';
 
 export default function AnimatedProfileCard({ data, renderProfileCard, onSwipeRight, onSwipeLeft, noMoreProfilesAvaliable }) {
 
@@ -55,7 +56,7 @@ export default function AnimatedProfileCard({ data, renderProfileCard, onSwipeRi
         })
     }
 
-    function nextCardTransition(){
+    function nextCardTransition() {
         UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true);
         LayoutAnimation.linear()
     }
@@ -66,31 +67,27 @@ export default function AnimatedProfileCard({ data, renderProfileCard, onSwipeRi
     //     }
     // }
 
-    function getNewSetOfData(){
+    function getNewSetOfData() {
         console.log('new set of data fetched');
 
         // nextSetOfData()
     }
 
-    function onSwipeComplete(direction) {
+    function onSwipeComplete( direction ) {
+
+        //need to pass the item data to the chat screen via onSwipeRight
         direction === 'right' ? onSwipeRight() : onSwipeLeft();
-        
+
         setIndexState(indexState + 1);
 
-
-        if( indexState === data.length -1 ){
+        if (indexState === data.length - 1) {
             getNewSetOfData()
         }
 
         nextCardTransition()
 
     }
-
-
     
-
-    
-
     function renderProfileCards() {
 
         if (indexState >= data.length) {
@@ -116,11 +113,8 @@ export default function AnimatedProfileCard({ data, renderProfileCard, onSwipeRi
             return (
                 // cards underneath the first card
                 <View style={styles.stackedCard} key={item.id}>
-                    
-                    <View style={styles.frostedCardOverlay}>
-                        <ZippersBackground/>
-                    </View>
                     {renderProfileCard(item)}
+                    <ZippersBackground opacity={0.7} backgroundColor={COLORS.DARK_AQUA} fontColor={COLORS.LIGHT_AQUA} textShadowColor={COLORS.DARK_AQUA} />
                 </View>
             )
         }).reverse()
@@ -138,12 +132,5 @@ const styles = StyleSheet.create({
     stackedCard: {
         position: 'absolute',
         backgroundColor: 'blue'
-    },
-    frostedCardOverlay:{
-        backgroundColor: 'green',
-        width: WINDOW_WIDTH,
-        height: WINDOW_HEIGHT,
-        opacity: 0.5
-
     }
 });
