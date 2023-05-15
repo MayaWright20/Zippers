@@ -31,6 +31,8 @@ export default function UserDetailsForm() {
 
     const [ userPhotos, setUserPhotos ] = useState([]);
 
+
+    
     function updateUserPhotos( photos ){
         setUserPhotos( photos );
     }
@@ -47,9 +49,12 @@ export default function UserDetailsForm() {
         }
     }
 
+    const navigation = useNavigation();
+
     function userDetailsFormHandler() {
         const user = new User( enteredName, enteredAlias, userPhotos, userLocation, userCity );
         console.log('send user to firebase', user)
+        navigation.navigate('Welcome', { screen: 'Discover' });
     }
 
     return (
