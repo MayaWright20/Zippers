@@ -1,13 +1,13 @@
 import React, { useLayoutEffect, useRef, useState } from 'react';
 import { Dimensions, View, FlatList, SafeAreaView, StyleSheet, Text, Pressable, ImageBackground, Image, Animated } from 'react-native';
 
-import { Colors } from '../../constants/Colors';
+import { COLORS } from '../../constants/COLORS';
 import ZippersButton from '../../components/Buttons/ZippersButtons';
 import Paginator from '../../components/Paginator';
 import ActionButton from '../../components/Buttons/ActionButton';
-import ZippersBackgroundText from '../../components/Background/ZipperBackgroundText';
+import ZippersBackgroundText from '../../components/Background/ZippersBackgroundText';
 
-import { WindowWidth, WindowHeight } from '../../constants/Dimentions';
+import { WINDOW_WIDTH, WINDOW_HEIGHT } from '../../constants/DIMENSIONS';
 import TopScreenGif from '../../components/Gifs/TopScreenGif';
 
 export default function AuthScreen({ navigation }) {
@@ -27,8 +27,8 @@ export default function AuthScreen({ navigation }) {
         {
             id: 'AuthScreen 1',
             title: 'EXPLORE',
-            authScreenBackgroundColor: Colors.DarkBlue,
-            buttonColor: Colors.Yellow,
+            authScreenBackgroundColor: COLORS.DARK_BLUE,
+            buttonColor: COLORS.YELLOW,
             authScreenBackgroundImage: null,
             topScreenGif: 'https://media.giphy.com/media/3oKIPePUxr83vL7Bsc/giphy.gif',
         },
@@ -36,23 +36,23 @@ export default function AuthScreen({ navigation }) {
             id: 'AuthScreen 2',
             title: 'CHAT',
             authScreenBackgroundColor: 'transparent',
-            buttonColor: Colors.LightBlue,
+            buttonColor: COLORS.LIGHT_BLUE,
             authScreenBackgroundImage: 'https://media.giphy.com/media/3ohhwxVhsthRqlWHq8/giphy.gif',
             topScreenGif: 'https://media.giphy.com/media/ZE5qSFzQW80tm14AZe/giphy.gif'
         },
         {
             id: 'AuthScreen 3',
             title: '',
-            authScreenBackgroundColor: Colors.LightPink,
-            buttonColor: Colors.DarkAqua,
+            authScreenBackgroundColor: COLORS.LIGHT_PINK,
+            buttonColor: COLORS.DARK_AQUA,
             authScreenBackgroundImage: null,
             topScreenGif: 'https://media.giphy.com/media/MXRkaIFXc7k9npyNhL/giphy.gif'
         },
         {
             id: 'AuthScreen 4',
             title: '',
-            authScreenBackgroundColor: Colors.MintGreen,
-            buttonColor: Colors.Peach,
+            authScreenBackgroundColor: COLORS.MINT_GREEN,
+            buttonColor: COLORS.PEACH,
             authScreenBackgroundImage: null,
             topScreenGif: 'https://media.giphy.com/media/IpbGcovWT1i21j1S4r/giphy.gif'
         },
@@ -81,7 +81,7 @@ export default function AuthScreen({ navigation }) {
                 <SafeAreaView style={styles.container}>
                     <View style={styles.authContentContainer}>
                         <View>
-                            <ZippersButton position='relative' />
+                            <ZippersButton />
                             <TopScreenGif source={item.topScreenGif ? { uri: item.topScreenGif } : null} />
                         </View>
                         <View>
@@ -123,8 +123,8 @@ export default function AuthScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        width: WindowWidth,
-        height: WindowHeight,
+        width: WINDOW_WIDTH,
+        height: WINDOW_HEIGHT,
         justifyContent: 'center',
     },
     authContentContainer: {
@@ -133,8 +133,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     topScreenGifWrapper: {
-        width: WindowWidth / 2.5,
-        height: WindowHeight / 6.5,
+        width: WINDOW_WIDTH / 2.5,
+        height: WINDOW_HEIGHT / 6.5,
         zIndex: 11
     },
     topScreenGif: {
@@ -143,14 +143,14 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
     },
     backgroundText: {
-        fontSize: WindowWidth / 4,
+        fontSize: WINDOW_WIDTH / 4,
         fontWeight: '600',
         textAlign: 'center',
     },
     buttonWrapper: {
         margin: 10,
         padding: 20,
-        backgroundColor: 'yellow',
+        backgroundColor: 'YELLOW',
         borderRadius: 10,
         borderColor: 'orange',
         borderWidth: 2

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Pressable, Text, StyleSheet, Dimensions } from 'react-native';
-import { WindowWidth, WindowHeight } from '../../constants/Dimentions';
+import { WINDOW_WIDTH, WINDOW_HEIGHT } from '../../constants/DIMENSIONS';
 
 export default function BackButton({onPress}){
 
@@ -17,8 +17,8 @@ const styles = StyleSheet.create({
     BackButtonWrapper: {
         position: 'absolute',
         padding: 5,
-        top: WindowHeight /20,
-        left: WindowWidth / 20,
+        top: WINDOW_HEIGHT /20,
+        left: WINDOW_WIDTH / 20,
     },
     BackButtonText:{
         color: 'black',

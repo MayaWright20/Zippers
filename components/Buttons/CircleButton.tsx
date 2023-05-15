@@ -1,7 +1,7 @@
 import React from 'react';
 import { Pressable, View, Text, StyleSheet } from 'react-native';
 
-import { WindowWidth  } from '../../constants/Dimentions';
+import { WINDOW_WIDTH  } from '../../constants/DIMENSIONS';
 
 export default function CircleButton({ emoji, backgroundColor, borderColor, onPress }){
 
@@ -16,9 +16,9 @@ export default function CircleButton({ emoji, backgroundColor, borderColor, onPr
 
 const styles = StyleSheet.create({
     container: {
-        width: WindowWidth / 10,
-        height: WindowWidth / 10,
-        borderRadius: WindowWidth,
+        width: WINDOW_WIDTH / 10,
+        height: WINDOW_WIDTH / 10,
+        borderRadius: WINDOW_WIDTH,
         alignContent: 'center',
         justifyContent:'center',
         overflow: 'hidden',

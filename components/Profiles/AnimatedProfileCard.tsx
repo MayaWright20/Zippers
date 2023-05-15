@@ -1,13 +1,14 @@
 import React, { useRef, useState } from 'react';
 import { Animated, PanResponder, View, Text, StyleSheet, SafeAreaView, LayoutAnimation, UIManager } from 'react-native';
 
-import { WindowHeight, WindowWidth } from '../../constants/Dimentions';
+import { WINDOW_HEIGHT, WINDOW_WIDTH } from '../../constants/DIMENSIONS';
+import ZippersBackground from '../Background/ZippersBackground';
 
 export default function AnimatedProfileCard({ data, renderProfileCard, onSwipeRight, onSwipeLeft, noMoreProfilesAvaliable }) {
 
     const pan = new Animated.ValueXY();
     const [indexState, setIndexState] = useState(0);
-    const SWIPE_THRESHOLD = WindowWidth / 2;
+    const SWIPE_THRESHOLD = WINDOW_WIDTH / 2;
 
     const panResponder = PanResponder.create({
         onMoveShouldSetPanResponder: () => true,
@@ -29,7 +30,7 @@ export default function AnimatedProfileCard({ data, renderProfileCard, onSwipeRi
     function getProfileCardStyle() {
 
         const rotate = pan.x.interpolate({
-            inputRange: [-WindowWidth * 1.5, 0, WindowWidth * 1.5],
+            inputRange: [-WINDOW_WIDTH * 1.5, 0, WINDOW_WIDTH * 1.5],
             outputRange: ['-120deg', '0deg', '120deg']
         });
 
@@ -44,7 +45,7 @@ export default function AnimatedProfileCard({ data, renderProfileCard, onSwipeRi
 
     function forceSwipe(direction) {
 
-        const xDirection = direction === 'right' ? WindowWidth : -WindowWidth;
+        const xDirection = direction === 'right' ? WINDOW_WIDTH : -WINDOW_WIDTH;
         Animated.timing(pan, {
             toValue: { x: xDirection, y: 0 },
             duration: 250,
@@ -52,6 +53,11 @@ export default function AnimatedProfileCard({ data, renderProfileCard, onSwipeRi
         }).start(() => {
             onSwipeComplete(direction);
         })
+    }
+
+    function nextCardTransition(){
+        UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true);
+        LayoutAnimation.linear()
     }
 
     // function nextSetOfData(nextProps){
@@ -68,12 +74,16 @@ export default function AnimatedProfileCard({ data, renderProfileCard, onSwipeRi
 
     function onSwipeComplete(direction) {
         direction === 'right' ? onSwipeRight() : onSwipeLeft();
+        
         setIndexState(indexState + 1);
+
+
         if( indexState === data.length -1 ){
-            console.log("INDEXSTART", indexState, data.length)
             getNewSetOfData()
         }
-        // resetPosition()
+
+        nextCardTransition()
+
     }
 
 
@@ -108,7 +118,7 @@ export default function AnimatedProfileCard({ data, renderProfileCard, onSwipeRi
                 <View style={styles.stackedCard} key={item.id}>
                     
                     <View style={styles.frostedCardOverlay}>
-                    
+                        <ZippersBackground/>
                     </View>
                     {renderProfileCard(item)}
                 </View>
@@ -131,8 +141,8 @@ const styles = StyleSheet.create({
     },
     frostedCardOverlay:{
         backgroundColor: 'green',
-        width: WindowWidth,
-        height: WindowHeight,
+        width: WINDOW_WIDTH,
+        height: WINDOW_HEIGHT,
         opacity: 0.5
 
     }

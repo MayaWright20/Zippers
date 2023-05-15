@@ -1,28 +1,25 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import ZippersBackgroundText from '../components/Background/ZipperBackgroundText';
+import ZippersBackground from '../components/Background/ZippersBackground';
 import ZippersButton from '../components/Buttons/ZippersButtons';
-import { Colors } from '../constants/Colors';
+import { COLORS } from '../constants/COLORS';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-export default function ChatScreen(){
-    
-    return(
+export default function ChatScreen() {
+
+    return (
         <View style={styles.chatScreenBackground}>
-            <ZippersButton position='absolute'/>
-            <ZippersBackgroundText fontColor={ Colors.Yellow } textShadowColor={ Colors.Peach }/>
-            <ZippersBackgroundText fontColor={ Colors.Yellow } textShadowColor={ Colors.Peach }/>
-            <ZippersBackgroundText fontColor={ Colors.Yellow } textShadowColor={ Colors.Peach }/>
-            <ZippersBackgroundText fontColor={ Colors.Yellow } textShadowColor={ Colors.Peach }/>
-            <ZippersBackgroundText fontColor={ Colors.Yellow } textShadowColor={ Colors.Peach }/>
-            <ZippersBackgroundText fontColor={ Colors.Yellow } textShadowColor={ Colors.Peach }/>
-            <ZippersBackgroundText fontColor={ Colors.Yellow } textShadowColor={ Colors.Peach }/>
+            <ZippersBackground fontColor={COLORS.YELLOW} textShadowColor={COLORS.PEACH} />
+            <SafeAreaView>
+                <ZippersButton />
+            </SafeAreaView>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    chatScreenBackground:{
+    chatScreenBackground: {
         flex: 1,
-        backgroundColor: Colors.DarkBlue
+        backgroundColor: COLORS.DARK_BLUE
     }
 })

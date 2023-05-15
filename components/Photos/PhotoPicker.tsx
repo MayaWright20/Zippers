@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Button, View, Image, FlatList } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
-import { WindowWidth } from '../../constants/Dimentions';
-import { Colors } from '../../constants/Colors';
+import { WINDOW_WIDTH } from '../../constants/DIMENSIONS';
+import { COLORS } from '../../constants/COLORS';
 
 export default function PhotoPicker({updateUserPhotos}) {
 
@@ -27,9 +27,9 @@ export default function PhotoPicker({updateUserPhotos}) {
     return (
         <View>
             <Button title="Add Photos 📸" onPress={pickImage} />
-            <View style={[{ backgroundColor: Colors.LightAqua, padding: 5, borderRadius: 20, overflow:'hidden' }]}>
+            <View style={[{ backgroundColor: COLORS.LIGHT_AQUA, padding: 5, borderRadius: 20, overflow:'hidden' }]}>
                 {imageResults && <FlatList horizontal={true}  data={imageResults} renderItem={({ item }) => {
-                    return <Image source={{ uri: item.uri }} style={[{ width: WindowWidth / 3, height: WindowWidth / 3, borderRadius: 20 }]} />;
+                    return <Image source={{ uri: item.uri }} style={[{ width: WINDOW_WIDTH / 3, height: WINDOW_WIDTH / 3, borderRadius: 20 }]} />;
                 }} />}
             </View>
         </View>

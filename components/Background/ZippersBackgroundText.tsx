@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, StyleSheet } from 'react-native';
 
-import { WindowWidth } from '../../constants/Dimentions';
+import { WINDOW_WIDTH } from '../../constants/DIMENSIONS';
 
 export default function ZippersBackgroundText({ fontColor, textShadowColor }){
     
@@ -14,7 +14,7 @@ export default function ZippersBackgroundText({ fontColor, textShadowColor }){
 
 const styles = StyleSheet.create({
     backgroundText: {
-        fontSize: WindowWidth / 4,
+        fontSize: WINDOW_WIDTH / 4,
         fontWeight: '600',
         textAlign: 'center',
         textShadowRadius: 10,

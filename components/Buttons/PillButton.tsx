@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 
-import { Colors } from "../../constants/Colors";
+import { COLORS } from "../../constants/COLORS";
 
 export default function PillButton({navigation}){
 

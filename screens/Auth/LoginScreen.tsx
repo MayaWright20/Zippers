@@ -4,7 +4,7 @@ import AuthContent from '../../components/Auth/AuthContent';
 import LoadingOverlay from '../../components/Background/LoadingOverlay';
 
 import { login } from '../../utils/auth';
-import { Colors } from '../../constants/Colors';
+import { COLORS } from '../../constants/COLORS';
 import { AuthContext } from '../../store/auth-context';
 
 export default function LoginScreen(){
@@ -26,7 +26,7 @@ export default function LoginScreen(){
     }
 
     if( isAuthenticating ){
-        return <LoadingOverlay backgroundColor={Colors.Yellow} color={Colors.LightBlue}/>
+        return <LoadingOverlay backgroundColor={COLORS.YELLOW} color={COLORS.LIGHT_BLUE}/>
     }
 
     return(

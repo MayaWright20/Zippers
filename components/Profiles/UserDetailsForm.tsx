@@ -3,8 +3,8 @@ import { View, Button, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { User } from '../../models/user';
-import { Colors } from '../../constants/Colors';
-import { FormStyling } from '../../constants/FormStyling';
+import { COLORS } from '../../constants/COLORS';
+import { FORM_STYLING } from '../../constants/FORM_STYLING';
 
 import FormInput from '../../components/FormInput';
 import BackButton from '../Buttons/BackButton';
@@ -58,15 +58,15 @@ export default function UserDetailsForm() {
     }
 
     return (
-        <View style={[{ ...FormStyling.formContainer, backgroundColor: 'pink', flex: 1 }]}>
+        <View style={[{ ...FORM_STYLING.formContainer, backgroundColor: 'pink', flex: 1 }]}>
             <View>
-                <FormInput label="Name (Not shown on profile)" labelStyle={{ color: 'black' }} inputStyle={{ backgroundColor: Colors.LightAqua }}
+                <FormInput label="Name (Not shown on profile)" labelStyle={{ color: 'black' }} inputStyle={{ backgroundColor: COLORS.LIGHT_AQUA }}
                     onChangeText={updateInputValueHandler.bind(this, 'name')}
                     value={enteredName}
                     isInvalid={undefined}
                     placeholder={null}
                 />
-                <FormInput label="Alias" labelStyle={{ color: 'black' }} inputStyle={{ backgroundColor: Colors.LightAqua }}
+                <FormInput label="Alias" labelStyle={{ color: 'black' }} inputStyle={{ backgroundColor: COLORS.LIGHT_AQUA }}
                     onChangeText={updateInputValueHandler.bind(this, 'alias')}
                     value={enteredAlias}
                     isInvalid={undefined}

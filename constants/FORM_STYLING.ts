@@ -1,6 +1,4 @@
-import { Colors } from "./Colors"
-
-export const FormStyling = {
+export const FORM_STYLING = {
     formContainer:{
         flex: 1,
         padding:10,

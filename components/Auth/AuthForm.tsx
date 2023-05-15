@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { View, Button, Text, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import { Colors } from '../../constants/Colors';
-import { FormStyling } from '../../constants/FormStyling';
-import { WindowWidth } from '../../constants/Dimentions';
+import { COLORS } from '../../constants/COLORS';
+import { FORM_STYLING } from '../../constants/FORM_STYLING';
+import { WINDOW_WIDTH } from '../../constants/DIMENSIONS';
 
 import BackButton from '../Buttons/BackButton';
 import FormInput from '../FormInput';
@@ -77,10 +77,10 @@ export default function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
     }
 
     return (
-        <View style={[{ ...FormStyling.formContainer, backgroundColor: !isLogin ? 'pink' : 'yellow', flex: 1 }]}>
+        <View style={[{ ...FORM_STYLING.formContainer, backgroundColor: !isLogin ? COLORS.BABY_PINK : COLORS.YELLOW , flex: 1 }]}>
             <BackButton onPress={BackButtonHandler} />
-            <Text style={{ ...FormStyling.formTitle }}>{ !isLogin ? 'Sign up' : 'Log in'}</Text>
-            <FormInput label="Email" labelStyle={{ color: 'black' }} inputStyle={{ backgroundColor: !isLogin ? Colors.LightAqua : Colors.LightBlue }}
+            <Text style={{ ...FORM_STYLING.formTitle }}>{ !isLogin ? 'Sign up' : 'Log in'}</Text>
+            <FormInput label="Email" labelStyle={{ color: 'black' }} inputStyle={{ backgroundColor: !isLogin ? COLORS.LIGHT_AQUA : COLORS.LIGHT_BLUE }}
             onChangeText={updateInputValueHandler.bind(this, 'email')}
             value={enteredEmail}
             keyboardType="email-address"
@@ -88,7 +88,7 @@ export default function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
             placeholder={null}
             />
             {!isLogin && (
-                <FormInput label="Confirm Email" labelStyle={{ color: 'black' }} inputStyle={{ backgroundColor: !isLogin ? Colors.LightAqua : Colors.LightBlue }}
+                <FormInput label="Confirm Email" labelStyle={{ color: 'black' }} inputStyle={{ backgroundColor: !isLogin ? COLORS.LIGHT_AQUA : COLORS.LIGHT_BLUE }}
                 onChangeText={updateInputValueHandler.bind(this, 'confirmEmail')}
                 value={enteredConfirmEmail}
                 keyboardType="email-address"
@@ -97,7 +97,7 @@ export default function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
                 secure
                 />
             )}
-            <FormInput label="Password" labelStyle={{ color: 'black' }} inputStyle={{ backgroundColor: !isLogin ? Colors.LightAqua : Colors.LightBlue }}
+            <FormInput label="Password" labelStyle={{ color: 'black' }} inputStyle={{ backgroundColor: !isLogin ? COLORS.LIGHT_AQUA : COLORS.LIGHT_BLUE }}
             onChangeText={updateInputValueHandler.bind(this, 'password')}
             secure
             placeholder={null}
@@ -105,7 +105,7 @@ export default function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
             isInvalid={passwordIsInvalid}
             />
             {!isLogin && (
-                <FormInput label="Confirm Password" labelStyle={{ color: 'black' }} inputStyle={{ backgroundColor: !isLogin ? Colors.LightAqua : Colors.LightBlue }}
+                <FormInput label="Confirm Password" labelStyle={{ color: 'black' }} inputStyle={{ backgroundColor: !isLogin ? COLORS.LIGHT_AQUA : COLORS.LIGHT_BLUE }}
                 onChangeText={updateInputValueHandler.bind(this,'confirmPassword')}
                 placeholder={null}
                 value={enteredConfirmPassword}
@@ -115,7 +115,7 @@ export default function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
             )}
             {!isLogin && (
                 <View style={styles.dateOfBirthWrapper}>
-                    <FormInput label="Date of Birth" labelStyle={{ color: 'black' }} inputStyle={[styles.dateOfBirth, {backgroundColor: !isLogin ? Colors.LightAqua : Colors.LightBlue}]}
+                    <FormInput label="Date of Birth" labelStyle={{ color: 'black' }} inputStyle={[styles.dateOfBirth, {backgroundColor: !isLogin ? COLORS.LIGHT_AQUA : COLORS.LIGHT_BLUE}]}
                         onChangeText={updateInputValueHandler.bind(this, 'dayOfBirth')}
                         value={enteredDayOfBirth}
                         placeholder="Day"
@@ -124,7 +124,7 @@ export default function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
                         secure
                         maxLength={2}
                     />
-                    <FormInput label="" labelStyle={{ color: 'black' }} inputStyle={[styles.dateOfBirth, {backgroundColor: !isLogin ? Colors.LightAqua : Colors.LightBlue}]}
+                    <FormInput label="" labelStyle={{ color: 'black' }} inputStyle={[styles.dateOfBirth, {backgroundColor: !isLogin ? COLORS.LIGHT_AQUA : COLORS.LIGHT_BLUE}]}
                         onChangeText={updateInputValueHandler.bind(this, 'monthOfBirth')}
                         value={enteredMonthOfBirth}
                         keyboardType="number-pad"
@@ -133,7 +133,7 @@ export default function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
                         secure
                         maxLength={2}
                     />
-                    <FormInput label="" labelStyle={{ color: 'black' }} inputStyle={[styles.dateOfBirth, {backgroundColor: !isLogin ? Colors.LightAqua : Colors.LightBlue}]}
+                    <FormInput label="" labelStyle={{ color: 'black' }} inputStyle={[styles.dateOfBirth, {backgroundColor: !isLogin ? COLORS.LIGHT_AQUA : COLORS.LIGHT_BLUE}]}
                         onChangeText={updateInputValueHandler.bind(this, 'yearOfBirth')}
                         value={enteredYearOfBirth}
                         placeholder="Year"
@@ -158,6 +158,6 @@ const styles = StyleSheet.create({
     },
     dateOfBirth: {
         backgroundColor: 'red',
-        width: WindowWidth / 4
+        width: WINDOW_WIDTH / 4
     }
 })

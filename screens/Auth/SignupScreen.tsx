@@ -6,7 +6,7 @@ import LoadingOverlay from '../../components/Background/LoadingOverlay';
 
 import { AuthContext } from '../../store/auth-context';
 import { createUser } from '../../utils/auth';
-import { Colors } from '../../constants/Colors';
+import { COLORS } from '../../constants/COLORS';
 
 export default function SignupScreen({ navigation }){
     
@@ -29,7 +29,7 @@ export default function SignupScreen({ navigation }){
     }
 
     if( isAuthenticating ){
-        return <LoadingOverlay backgroundColor={Colors.LightPink} color={Colors.LightAqua}/>
+        return <LoadingOverlay backgroundColor={COLORS.LIGHT_PINK} color={COLORS.LIGHT_AQUA}/>
     }
 
     return(

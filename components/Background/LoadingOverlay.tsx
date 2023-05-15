@@ -2,7 +2,7 @@ import { View, ActivityIndicator, StyleSheet } from 'react-native';
 
 export default function LoadingOverlay({backgroundColor, color}){
     return(
-        <View style={[styles.container, backgroundColor={backgroundColor}]}>
+        <View style={[styles.container, {backgroundColor}]}>
             <ActivityIndicator size='large' color={color}/>
         </View>
     )

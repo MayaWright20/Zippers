@@ -1,12 +1,12 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 
-import { Colors } from "../../constants/Colors";
+import { COLORS } from "../../constants/COLORS";
 
 export default function ZippersButton({position}){
 
     return(
-        <View style={[styles.zippersButtonWrapper, {position: position}]}>
+        <View style={[styles.zippersButtonWrapper]}>
             <Text style={styles.zippersButton}>ZIPPERS</Text>
         </View>
     )
@@ -17,12 +17,13 @@ const styles =  StyleSheet.create({
         zIndex: 10,
         width: '30%',
         alignSelf: 'center',
+        position:'relative',
         top: 5,
         borderRadius: 60,
-        backgroundColor: Colors.LightAqua,
+        backgroundColor: COLORS.LIGHT_AQUA,
     },
     zippersButton: {
-        color: Colors.DarkBlue,
+        color: COLORS.DARK_BLUE,
         textAlign: 'center',
         paddingHorizontal: 20,
         paddingVertical: 10,

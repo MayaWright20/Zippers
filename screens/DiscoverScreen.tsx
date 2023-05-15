@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, SafeAreaView, ScrollView, PanResponder } from 'react-native';
 
 import AnimatedProfileCard from '../components/Profiles/AnimatedProfileCard';
-import { WindowHeight, WindowWidth } from '../constants/Dimentions';
+import { WINDOW_HEIGHT, WINDOW_WIDTH } from '../constants/DIMENSIONS';
 
 
 export default function DiscoverScreen() {
@@ -58,15 +58,15 @@ const styles = StyleSheet.create({
         backgroundColor: 'pink'
     },
     profileCardContainer: {
-        width: WindowWidth,
-        height: WindowHeight,
-        // backgroundColor: 'yellow',
+        width: WINDOW_WIDTH,
+        height: WINDOW_HEIGHT,
+        // backgroundColor: 'YELLOW',
         borderColor: 'black',
         borderWidth: 2
     },
     box: {
-        height: WindowHeight,
-        width: WindowWidth,
+        height: WINDOW_HEIGHT,
+        width: WINDOW_WIDTH,
         // backgroundColor: 'blue',
         borderRadius: 5,
     }
