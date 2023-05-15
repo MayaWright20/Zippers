@@ -19,8 +19,6 @@ export default function DiscoverScreen() {
 
     function renderProfileCard(item) {
         return (
-
-            
                 <View key={item.id} style={[styles.profileCardContainer, styles.box]}>
                     <Image width={100} height={100} source={{ uri: item.uri }} />
                     <Text>{item.text}</Text>
@@ -32,6 +30,14 @@ export default function DiscoverScreen() {
         )
     }
 
+    function noMoreProfilesAvaliable(){
+        return(
+            <View>
+                <Text> NO MORE PROFILES AVALIABLE!!!!\n try widdening your search</Text>
+            </View>
+        )
+    }
+
     
 
 
@@ -39,7 +45,7 @@ export default function DiscoverScreen() {
     return (
         <View style={styles.discoverScreenContainer}>
             <SafeAreaView>
-                <AnimatedProfileCard data={DATA} renderProfileCard={renderProfileCard} onSwipeRight={()=>{console.log("Have swiped right")}} onSwipeLeft={()=>{console.log("Have swiped left")}}/>
+                <AnimatedProfileCard data={DATA} renderProfileCard={renderProfileCard} onSwipeRight={()=>{console.log("Have swiped right")}} onSwipeLeft={()=>{console.log("Have swiped left")}} noMoreProfilesAvaliable={noMoreProfilesAvaliable}/>
             </SafeAreaView>
         </View>
 
@@ -54,14 +60,14 @@ const styles = StyleSheet.create({
     profileCardContainer: {
         width: WindowWidth,
         height: WindowHeight,
-        backgroundColor: 'yellow',
+        // backgroundColor: 'yellow',
         borderColor: 'black',
         borderWidth: 2
     },
     box: {
-        height: WindowHeight /3,
+        height: WindowHeight,
         width: WindowWidth,
-        backgroundColor: 'blue',
+        // backgroundColor: 'blue',
         borderRadius: 5,
     }
 

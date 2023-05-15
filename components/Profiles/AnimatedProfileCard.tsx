@@ -1,39 +1,17 @@
 import React, { useRef, useState } from 'react';
-import { Animated, PanResponder, View, Text, StyleSheet, SafeAreaView } from 'react-native';
+import { Animated, PanResponder, View, Text, StyleSheet, SafeAreaView, LayoutAnimation, UIManager } from 'react-native';
 
-import { WindowWidth } from '../../constants/Dimentions';
+import { WindowHeight, WindowWidth } from '../../constants/Dimentions';
 
-export default function AnimatedProfileCard({ data, renderProfileCard }) {
+export default function AnimatedProfileCard({ data, renderProfileCard, onSwipeRight, onSwipeLeft, noMoreProfilesAvaliable }) {
 
-    const [indexState, setIndexState] = useState(0);
-
-
-    const SWIPE_THRESHOLD = WindowWidth / 2;
     const pan = new Animated.ValueXY();
-
-
-    function forceSwipe(direction) {
-        const xDirection = direction === 'right' ? WindowWidth : -WindowWidth;
-        Animated.timing(pan, {
-            toValue: { x: xDirection, y: 0 },
-            duration: 250
-        }).start(() => {
-            onSwipeComplete(direction);
-        })
-    }
-
-    function onSwipeComplete(direction) {
-        // direction === 'right'? onSwipeRight(item) : onSwipeLeft(item);
-        setIndexState(indexState+1);
-
-        // resetPosition()
-    }
-
-
+    const [indexState, setIndexState] = useState(0);
+    const SWIPE_THRESHOLD = WindowWidth / 2;
 
     const panResponder = PanResponder.create({
         onMoveShouldSetPanResponder: () => true,
-        onPanResponderMove: Animated.event([null, { dx: pan.x, dy: pan.y }]),
+        onPanResponderMove: Animated.event([null, { dx: pan.x, dy: pan.y }], { useNativeDriver: false }),
         onPanResponderRelease: () => {
 
             let panx = Number(JSON.parse((JSON.stringify(pan.x.valueOf()))));
@@ -46,8 +24,7 @@ export default function AnimatedProfileCard({ data, renderProfileCard }) {
                 resetPosition();
             }
         },
-    })
-
+    });
 
     function getProfileCardStyle() {
 
@@ -65,28 +42,98 @@ export default function AnimatedProfileCard({ data, renderProfileCard }) {
         Animated.spring(pan, { toValue: { x: 0, y: 0 }, tension: 10, friction: 5, useNativeDriver: false }).start();
     }
 
+    function forceSwipe(direction) {
+
+        const xDirection = direction === 'right' ? WindowWidth : -WindowWidth;
+        Animated.timing(pan, {
+            toValue: { x: xDirection, y: 0 },
+            duration: 250,
+            useNativeDriver: false
+        }).start(() => {
+            onSwipeComplete(direction);
+        })
+    }
+
+    // function nextSetOfData(nextProps){
+    //     if( nextProps.data !== data ){
+    //         setIndexState(0)
+    //     }
+    // }
+
+    function getNewSetOfData(){
+        console.log('new set of data fetched');
+
+        // nextSetOfData()
+    }
+
+    function onSwipeComplete(direction) {
+        direction === 'right' ? onSwipeRight() : onSwipeLeft();
+        setIndexState(indexState + 1);
+        if( indexState === data.length -1 ){
+            console.log("INDEXSTART", indexState, data.length)
+            getNewSetOfData()
+        }
+        // resetPosition()
+    }
+
+
+    
+
+    
 
     function renderProfileCards() {
+
+        if (indexState >= data.length) {
+            return noMoreProfilesAvaliable();
+        }
+
         return data.map((item, i) => {
+
 
             if (i < indexState) { return null }; // this is the code that needs to change for rewind functionality
 
-            if (i === indexState) {
+            if (i === indexState && i !== 20) {
                 return (
+                    //card shown at the top 
                     <Animated.View
-                        key={item.key}
-                        style={getProfileCardStyle()}
+                        key={item.id}
+                        style={[getProfileCardStyle(), styles.stackedCard]}
                         {...panResponder.panHandlers}>
                         {renderProfileCard(item)}
                     </Animated.View>
                 )
             }
-            return renderProfileCard(item)
-        })
+            return (
+                // cards underneath the first card
+                <View style={styles.stackedCard} key={item.id}>
+                    
+                    <View style={styles.frostedCardOverlay}>
+                    
+                    </View>
+                    {renderProfileCard(item)}
+                </View>
+            )
+        }).reverse()
     }
     return (
-        <View>
-            {renderProfileCards()}
-        </View>
+        <SafeAreaView>
+            <Animated.View style={styles.stackedCard} key={data.id}>
+                {renderProfileCards()}
+            </Animated.View>
+        </SafeAreaView>
     )
 }
+
+const styles = StyleSheet.create({
+    stackedCard: {
+        position: 'absolute',
+        backgroundColor: 'blue'
+    },
+    frostedCardOverlay:{
+        backgroundColor: 'green',
+        width: WindowWidth,
+        height: WindowHeight,
+        opacity: 0.5
+
+    }
+});
