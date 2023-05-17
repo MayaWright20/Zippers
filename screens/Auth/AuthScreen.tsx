@@ -1,12 +1,12 @@
 import React, { useLayoutEffect, useRef, useState } from 'react';
 import { Dimensions, View, FlatList, SafeAreaView, StyleSheet, Text, Pressable, ImageBackground, Image, Animated } from 'react-native';
 
-import { COLORS } from '../../constants/COLORS';
 import ZippersButton from '../../components/Buttons/ZippersButtons';
 import Paginator from '../../components/Paginator';
 import ActionButton from '../../components/Buttons/ActionButton';
 import ZippersBackgroundText from '../../components/Background/ZippersBackgroundText';
 
+import { COLORS } from '../../constants/COLORS';
 import { WINDOW_WIDTH, WINDOW_HEIGHT } from '../../constants/DIMENSIONS';
 import TopScreenGif from '../../components/Gifs/TopScreenGif';
 
