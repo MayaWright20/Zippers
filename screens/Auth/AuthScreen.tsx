@@ -25,7 +25,7 @@ export default function AuthScreen({ navigation }) {
 
     const DATA: ItemData[] = [
         {
-            id: 'AuthScreen 1',
+            id: 'AuthScreen 10',
             title: 'EXPLORE',
             authScreenBackgroundColor: COLORS.DARK_BLUE,
             buttonColor: COLORS.YELLOW,
