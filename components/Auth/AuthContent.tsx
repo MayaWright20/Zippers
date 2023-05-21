@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Alert, View } from 'react-native';
 
 import AuthForm from './AuthForm';
+import AuthOTP from './AuthOTP';
 
 export default function AuthContent({ isLogin, onAuthenticate }) {
 
@@ -61,6 +62,7 @@ export default function AuthContent({ isLogin, onAuthenticate }) {
 
     return (
         <View style={{ flex: 1 }}>
+            <AuthOTP/>
             <AuthForm
                 isLogin={isLogin}
                 credentialsInvalid={credentialsInvalid}
