@@ -3,7 +3,7 @@ const client = require('./twilio');
 
 module.exports = function(req: { body: { phone: any; }; }, res: { status: (arg0: number) => { (): any; new(): any; send: { (arg0: { error: any; }): void; new(): any; }; }; send: (arg0: { success: boolean; }) => void; }){
     if(!req.body.phone){
-        return res.status(422).send({ error: 'You must provide a phone number' });
+        return res.status(422).send({ error: 'You must provide a phone number 🤙' });
     }
 
     const phone = String(req.body.phone).replace(/\+[^\d]/g, "");
