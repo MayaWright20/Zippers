@@ -63,6 +63,8 @@ export default function AuthOTP({ isLogin, onSubmit, credentialsInvalid }) {
         try{
             let { data } = await axios.post(`https://verifyonetimepassword${FIREBASE_AUTH_PATH}`, 
             { phone: enteredPhoneNumber, code : verificationCode });
+
+            
             firebase.auth().signInWithCustomToken(data.token);
             console.log('signed in')
         }catch(err){ 
