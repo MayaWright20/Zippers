@@ -6,7 +6,7 @@ import { User } from '../../models/user';
 import { COLORS } from '../../constants/COLORS';
 import { FORM_STYLING } from '../../constants/FORM_STYLING';
 
-import FormInput from '../../components/FormInput';
+import FormInput from '../FormInputs/FormInput';
 import BackButton from '../Buttons/BackButton';
 import Constants from 'expo-constants';
 import PhotoPicker from '../Photos/PhotoPicker';

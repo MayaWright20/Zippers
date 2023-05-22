@@ -30,7 +30,7 @@ export default function AuthOTPContent( isLogin, onAuthenticate ){
     return(
         <View style={{ flex: 1 }}>
             <AuthOTP
-            isLogin={isLogin}
+            isLogin={!isLogin}
             credentialsInvalid={credentialsInvalid}
             onSubmit={submitHandler}
             />

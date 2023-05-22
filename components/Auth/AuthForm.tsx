@@ -7,7 +7,7 @@ import { FORM_STYLING } from '../../constants/FORM_STYLING';
 import { WINDOW_WIDTH } from '../../constants/DIMENSIONS';
 
 import BackButton from '../Buttons/BackButton';
-import FormInput from '../FormInput';
+import FormInput from '../FormInputs/FormInput';
 
 
 export default function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
@@ -118,7 +118,7 @@ export default function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
                     <FormInput label="Date of Birth" labelStyle={{ color: 'black' }} inputStyle={[styles.dateOfBirth, {backgroundColor: !isLogin ? COLORS.LIGHT_AQUA : COLORS.LIGHT_BLUE}]}
                         onChangeText={updateInputValueHandler.bind(this, 'dayOfBirth')}
                         value={enteredDayOfBirth}
-                        placeholder="Day"
+                        placeholder="D"
                         keyboardType="number-pad"
                         isInvalid={dayOfBirthIsInvalid}
                         secure
@@ -128,7 +128,7 @@ export default function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
                         onChangeText={updateInputValueHandler.bind(this, 'monthOfBirth')}
                         value={enteredMonthOfBirth}
                         keyboardType="number-pad"
-                        placeholder="Month"
+                        placeholder="M"
                         isInvalid={monthOfBirthIsInvalid}
                         secure
                         maxLength={2}
@@ -136,7 +136,7 @@ export default function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
                     <FormInput label="" labelStyle={{ color: 'black' }} inputStyle={[styles.dateOfBirth, {backgroundColor: !isLogin ? COLORS.LIGHT_AQUA : COLORS.LIGHT_BLUE}]}
                         onChangeText={updateInputValueHandler.bind(this, 'yearOfBirth')}
                         value={enteredYearOfBirth}
-                        placeholder="Year"
+                        placeholder="Y"
                         keyboardType="number-pad"
                         isInvalid={yearOfBirthIsInvalid}
                         secure
@@ -157,7 +157,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     dateOfBirth: {
-        backgroundColor: 'red',
-        width: WINDOW_WIDTH / 4
+        width: WINDOW_WIDTH / 7,
+        height: WINDOW_WIDTH / 7,
+        textAlign: 'center'
     }
 })
