@@ -1,9 +1,6 @@
 import axios from 'axios';
-import * as dotenv from 'dotenv';
 
-dotenv.config();
-
-const API_KEY = process.env.API_KEY;
+const API_KEY = 'AIzaSyBmn9-BUNrwGGntbKsVruvPFP_Qe0ycfO0';
 
 async function authenticate(mode, email, password){
     const url = `https://identitytoolkit.googleapis.com/v1/accounts:${mode}?key=${API_KEY}`
