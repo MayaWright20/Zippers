@@ -11,3 +11,11 @@ node_modules/
 
 'service_account.json'
 'twilio.js'
+'twilio.ts'
+'twilioPhone.ts'
+'twilioPhone.js'
+twilio.ts
+twilio.js
+service_account.json
+twilioPhone.ts
+twilioPhone.js

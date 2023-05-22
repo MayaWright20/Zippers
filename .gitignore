@@ -10,6 +10,14 @@ npm-debug.*
 *.orig.*
 web-build/
 
+.env
+
+'.env'
+'FIREBASE_URL.ts'
+FIREBASE_URL.ts
+'FIREBASE_URL.js'
+FIREBASE_URL.js
+
 # macOS
 .DS_Store
 

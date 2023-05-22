@@ -1,3 +1,5 @@
+import { twilioPhone } from "./phone";
+
 const firebaseAdmin = require('firebase-admin');
 const client = require('./twilio');
 
@@ -15,7 +17,7 @@ module.exports = function(req: { body: { phone: any; }; }, res: { status: (arg0:
         client.messages.create({
             body: 'DO NOT SHARE YOUR CODE WITH ANYONE 🤐: \n Your Zippers code is:' + code,
             to: phone,
-            from: '+447380280690'
+            from: twilioPhone
         }, (err: { error: any; }) => {
             if( err ){ return res.status(422).send(err);}
 

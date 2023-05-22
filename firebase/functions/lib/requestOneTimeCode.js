@@ -1,4 +1,6 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const phone_1 = require("./phone");
 const firebaseAdmin = require('firebase-admin');
 const client = require('./twilio');
 module.exports = function (req, res) {
@@ -12,7 +14,7 @@ module.exports = function (req, res) {
         client.messages.create({
             body: 'DO NOT SHARE YOUR CODE WITH ANYONE 🤐: \n Your Zippers code is:' + code,
             to: phone,
-            from: '+447380280690'
+            from: phone_1.twilioPhone
         }, (err) => {
             if (err) {
                 return res.status(422).send(err);
