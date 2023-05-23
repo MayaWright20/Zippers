@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Alert } from 'react-native';
 
-import AuthOTP from './AuthOTP';
+import AuthOTPForm from './AuthOTPForm';
 
 export default function AuthOTPContent( isLogin, onAuthenticate ){
 
@@ -29,8 +29,8 @@ export default function AuthOTPContent( isLogin, onAuthenticate ){
 
     return(
         <View style={{ flex: 1 }}>
-            <AuthOTP
-            isLogin={!isLogin}
+            <AuthOTPForm
+            isLogin={isLogin}
             credentialsInvalid={credentialsInvalid}
             onSubmit={submitHandler}
             />

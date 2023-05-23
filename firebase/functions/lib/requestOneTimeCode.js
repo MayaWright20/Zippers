@@ -12,7 +12,7 @@ module.exports = function (req, res) {
         client.messages.create({
             body: 'DO NOT SHARE YOUR CODE WITH ANYONE 🤐: \n Your Zippers code is:' + code,
             to: phone,
-            from: '+447380280690'
+            from: `${process.env.TWILIO_PHONE_NUMBER}`
         }, (err) => {
             if (err) {
                 return res.status(422).send(err);

@@ -46,8 +46,8 @@ export default function AuthOTP({ isLogin, onSubmit, credentialsInvalid }) {
             await axios.post(`https://requestonetimecode${FIREBASE_URL}`, { phone: enteredPhoneNumber });
             setHasCode(!hasCode);
             setEditable(false)
-        }catch(err){
-            console.log(err)
+        }catch( err ){
+            console.log( err )
         }
     }
 

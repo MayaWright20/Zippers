@@ -8,9 +8,14 @@
     "strict": true,
     "target": "es2017",
     "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+    "@env/*": ["path/to/env/*"]
+  }
   },
   "compileOnSave": true,
   "include": [
     "src"
   ]
 }
+

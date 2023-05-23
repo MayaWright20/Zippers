@@ -7,12 +7,13 @@
  * See a full list of supported triggers at https://firebase.google.com/docs/functions
  */
 
-import { onRequest } from "firebase-functions/v2/https";
+
 // import * as logger from "firebase-functions/logger";
 const createAuthUser = require('./Auth/createAuthUser');
 const admin = require('firebase-admin');
 const requestOneTimeCode = require('./requestOneTimeCode');
 import * as serviceAccount from "./service_account.json";
+import {onRequest} from "firebase-functions/v2/https";
 const verifyOneTimePassword = require("./verifyOneTimePassword");
 
 // Start writing functions
@@ -20,11 +21,8 @@ const verifyOneTimePassword = require("./verifyOneTimePassword");
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://zippers-b57eb-default-rtdb.firebaseio.com"
+    databaseURL: `${process.env.DATABASE_URL}`
 });
-
-
-
 
 exports.createUser = onRequest(createAuthUser);
 
