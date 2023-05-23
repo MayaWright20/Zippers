@@ -23,6 +23,9 @@ admin.initializeApp({
     databaseURL: "https://zippers-b57eb-default-rtdb.firebaseio.com"
 });
 
+
+
+
 exports.createUser = onRequest(createAuthUser);
 
 exports.requestOneTimeCode = onRequest(requestOneTimeCode);

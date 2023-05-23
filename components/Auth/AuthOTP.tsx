@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import firebase from 'firebase/app';
+import {FIREBASE_URL} from "@env";
 
 import { View, Button, Text, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -8,8 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 import { COLORS } from '../../constants/COLORS';
 import { FORM_STYLING } from '../../constants/FORM_STYLING';
 import { WINDOW_WIDTH } from '../../constants/DIMENSIONS';
-import { FIREBASE_AUTH_PATH } from '../../constants/FIREBASE_URL';
-
+// import { FIREBASE_AUTH_PATH } from '../../constants/FIREBASE_URL';
 
 
 import BackButton from '../Buttons/BackButton';
@@ -40,16 +39,11 @@ export default function AuthOTP({ isLogin, onSubmit, credentialsInvalid }) {
         phoneNumber: phoneNumberIsInvalid,
     } = credentialsInvalid;
 
-    useEffect(()=>{
-
-        // firebaseConfig.initializeApp(firebaseConfig);
-    },[])
-
 
     async function getCodeHandler(){
         try{
-            await axios.post(`https://createuser${FIREBASE_AUTH_PATH}`, {phone: enteredPhoneNumber });
-            await axios.post(`https://requestonetimecode${FIREBASE_AUTH_PATH}`, { phone: enteredPhoneNumber });
+            await axios.post(`https://createuser${FIREBASE_URL}`, {phone: enteredPhoneNumber });
+            await axios.post(`https://requestonetimecode${FIREBASE_URL}`, { phone: enteredPhoneNumber });
             setHasCode(!hasCode);
             setEditable(false)
         }catch(err){
@@ -58,15 +52,14 @@ export default function AuthOTP({ isLogin, onSubmit, credentialsInvalid }) {
     }
 
     async function submitCodeHandler() {
-        console.log('hi')
+        console.log('This is where you have the code from twilio and you want to verify');
+        console.log("phoneNumber", enteredPhoneNumber, "CODE", verificationCode)
 
         try{
-            let { data } = await axios.post(`https://verifyonetimepassword${FIREBASE_AUTH_PATH}`, 
+            let { data } = await axios.post(`https://verifyonetimepassword${FIREBASE_URL}`, 
             { phone: enteredPhoneNumber, code : verificationCode });
+            console.log("DATTTTTA\n\n\n\n\n\n\n", data);
 
-            
-            firebase.auth().signInWithCustomToken(data.token);
-            console.log('signed in')
         }catch(err){ 
             console.log(err);
         }
@@ -167,7 +160,10 @@ export default function AuthOTP({ isLogin, onSubmit, credentialsInvalid }) {
                         secure={undefined} 
                         maxLength={1}
                     />
+
                 </View> : null
+
+
             }
             <Button title={!hasCode? 'Get Code 👉' : 'Sign up 👉'} onPress={!hasCode ? getCodeHandler : submitCodeHandler } />
 
