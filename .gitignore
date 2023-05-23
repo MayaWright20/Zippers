@@ -9,15 +9,9 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
-constants
+
 
 .env
-
-'.env'
-'FIREBASE_URL.ts'
-FIREBASE_URL.ts
-'FIREBASE_URL.js'
-FIREBASE_URL.js
 
 # macOS
 .DS_Store
@@ -25,5 +19,3 @@ FIREBASE_URL.js
 # Temporary files created by Metro to check the health of the file watcher
 .metro-health-check*
 
-
-'FIREBASE_URL.ts'
