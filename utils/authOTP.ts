@@ -1,9 +1,10 @@
 import axios from 'axios';
+import { API_KEY} from "@env";
 
-const API_KEY = 'AIzaSyBmn9-BUNrwGGntbKsVruvPFP_Qe0ycfO0';
+const api_key = `${API_KEY}`;
 
 async function authenticate(mode, email, password){
-    const url = `https://verifyonetimepassword-2tvaasa22q-uc.a.run.app`
+    const url = `https://identitytoolkit.googleapis.com/v1/accounts:${mode}?key=${api_key}`
 
     const response = await axios.post(url, {
         email: email,
@@ -13,7 +14,6 @@ async function authenticate(mode, email, password){
     const token = response.data.idToken;
     return token;
 }
-
 
 export function createUser(email, password) {
     return authenticate('signUp', email, password);
