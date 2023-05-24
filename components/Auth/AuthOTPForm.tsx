@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import {FIREBASE_URL} from "@env";
+import { FIREBASE_URL } from "@env";
 
 import { View, Button, Text, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -10,7 +10,7 @@ import { FORM_STYLING } from '../../constants/FORM_STYLING';
 import { WINDOW_WIDTH } from '../../constants/DIMENSIONS';
 // import { FIREBASE_AUTH_PATH } from '../../constants/FIREBASE_URL';
 
-import {createUserGetCodeHandler, submitCodeGetTokenHandler} from '../../utils/authOTP';
+import {createUser, getCode } from '../../utils/authOTP';
 
 
 import BackButton from '../Buttons/BackButton';
@@ -27,21 +27,21 @@ export default function AuthOTP({ isLogin, credentialsInvalid, onSubmit }) {
     }
 
     const [enteredPhoneNumber, setEnteredPhoneNumber] = useState('');
-    const [ editable, setEditable ] = useState(true);
+    const [editable, setEditable] = useState(true);
     const [enteredVerificationCode1, setEnteredVerificationCode1] = useState('');
     const [enteredVerificationCode2, setEnteredVerificationCode2] = useState('');
     const [enteredVerificationCode3, setEnteredVerificationCode3] = useState('');
     const [enteredVerificationCode4, setEnteredVerificationCode4] = useState('');
-    
+
     const verificationCode = enteredVerificationCode1 + enteredVerificationCode2 + enteredVerificationCode3 + enteredVerificationCode4;
 
-    const [ hasCode, setHasCode ] = useState(false);
+    const [hasCode, setHasCode] = useState(false);
 
     const {
         phoneNumber: phoneNumberIsInvalid,
     } = credentialsInvalid;
 
-    function updateInputValueHandler( inputType, enteredValue ) {
+    function updateInputValueHandler(inputType, enteredValue) {
 
         switch (inputType) {
             case 'phoneNumber':
@@ -63,16 +63,23 @@ export default function AuthOTP({ isLogin, credentialsInvalid, onSubmit }) {
         }
     }
 
-    function getCodeHandler(){
-        createUserGetCodeHandler(enteredPhoneNumber, setHasCode, hasCode, setEditable)
+    async function getCodeHandler() {
+        if (!isLogin) {
+            await createUser(enteredPhoneNumber, setHasCode, hasCode, setEditable);
+        }else if(isLogin){
+            await getCode(enteredPhoneNumber, setHasCode, hasCode, setEditable)
+        }else{
+            return
+        }
     }
 
-    function submitCodeHandler(){
+    function submitCodeHandler() {
         onSubmit({
             phone: enteredPhoneNumber,
             code: verificationCode
         });
     }
+    const title = !hasCode ? 'Get Code 👉' : (hasCode && isLogin ? 'Log in 👉' : 'Sign up 👉');
 
     return (
         <View style={[{ ...FORM_STYLING.formContainer, backgroundColor: !isLogin ? COLORS.BABY_PINK : COLORS.YELLOW, flex: 1 }]}>
@@ -86,12 +93,12 @@ export default function AuthOTP({ isLogin, credentialsInvalid, onSubmit }) {
                 keyboardType="phone-pad"
                 isInvalid={phoneNumberIsInvalid}
                 placeholder={null}
-                editable={editable} 
-                maxLength={undefined} 
-                onChangeText={updateInputValueHandler.bind(this, 'phoneNumber')} 
-                secure={undefined}            
-                />
-            {hasCode ?
+                editable={editable}
+                maxLength={undefined}
+                onChangeText={updateInputValueHandler.bind(this, 'phoneNumber')}
+                secure={undefined}
+            />
+            { hasCode ?
                 <View style={styles.verificationCodeWrapper}>
                     <FormInput
                         label="Code"
@@ -103,8 +110,8 @@ export default function AuthOTP({ isLogin, credentialsInvalid, onSubmit }) {
                         isInvalid={undefined}
                         placeholder={null}
                         maxLength={1}
-                        secure={undefined}                    
-                        />
+                        secure={undefined} 
+                        editable={undefined}/>
                     <FormInput
                         label={undefined}
                         labelStyle={{ color: 'black' }}
@@ -114,9 +121,9 @@ export default function AuthOTP({ isLogin, credentialsInvalid, onSubmit }) {
                         keyboardType="number-pad"
                         isInvalid={undefined}
                         placeholder={null}
-                        secure={undefined} 
-                        maxLength={1}
-                    />
+                        secure={undefined}
+                        maxLength={1} 
+                        editable={undefined}/>
                     <FormInput
                         label={undefined}
                         labelStyle={{ color: 'black' }}
@@ -125,10 +132,10 @@ export default function AuthOTP({ isLogin, credentialsInvalid, onSubmit }) {
                         value={enteredVerificationCode3}
                         keyboardType="number-pad"
                         isInvalid={undefined}
-                        secure={undefined} 
+                        secure={undefined}
                         placeholder={null}
-                        maxLength={1}
-                    />
+                        maxLength={1} 
+                        editable={undefined}/>
                     <FormInput
                         label={undefined}
                         labelStyle={{ color: 'black' }}
@@ -138,27 +145,23 @@ export default function AuthOTP({ isLogin, credentialsInvalid, onSubmit }) {
                         keyboardType="number-pad"
                         isInvalid={undefined}
                         placeholder={null}
-                        secure={undefined} 
-                        maxLength={1}
-                    />
-
-                </View> : null
-
-
-            }
-            <Button title={!hasCode? 'Get Code 👉' : 'Log in 👉'} onPress={!hasCode ? getCodeHandler : submitCodeHandler } />
+                        secure={undefined}
+                        maxLength={1} 
+                        editable={undefined}/>
+                </View> : null}
+            <Button title={title} onPress={!hasCode ? getCodeHandler : submitCodeHandler} />
         </View>
     )
 }
 
 
 const styles = StyleSheet.create({
-    verificationCodeWrapper:{
+    verificationCodeWrapper: {
         flexDirection: 'row',
         width: '100%',
         justifyContent: 'space-between'
     },
-    verificationCodeItem:{
+    verificationCodeItem: {
         width: WINDOW_WIDTH / 7,
         height: WINDOW_WIDTH / 7,
         textAlign: 'center'

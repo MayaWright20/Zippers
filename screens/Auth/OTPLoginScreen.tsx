@@ -1,40 +1,41 @@
+import axios from 'axios';
 import { useState, useContext } from 'react';
+// import { useNavigation } from '@react-navigation/native';
+
 import { Alert } from 'react-native';
 import AuthOTPContent from '../../components/Auth/AuthOTPContent';
 import LoadingOverlay from '../../components/Background/LoadingOverlay';
 
+import { FIREBASE_URL} from "@env";
 import { submitCodeGetTokenHandler } from '../../utils/authOTP';
 import { COLORS } from '../../constants/COLORS';
 import { AuthContext } from '../../store/auth-context';
+import { AuthOTPContext} from '../../store/authOTP-context';
 
-export default function OTPLoginScreen(){
+export default function OTPLoginScreen({navigation}){
 
-    const [ isAuthenticating, setIsAuthenticating ] = useState(false)
+    const [ isAuthenticating, setIsAuthenticating ] = useState(false);
+    const authCtx = useContext(AuthOTPContext);
 
-    const authCtx = useContext(AuthContext);
-
-    // async function loginHandler({phone, code}){
-    //     console.log("here two")
-    //     console.log("PhoneCode","phone", phone, code)
-    //     setIsAuthenticating(true)
-    //     console.log("PhonetureCode","phone", phone, code)
-    //     try{
-    //         const token = await submitCodeGetTokenHandler(phone, code);
-    //         console.log("PhonetureCodeeeeeeeee","phone", {phone, code})
-    //         authCtx.authenticate(token);
-    //         console.log('hi')
-    //     } catch( error ){
-    //         console.log("login error",error)
-    //         Alert.alert('Authentication failed', 'Please check credentials or try again later');
-    //         setIsAuthenticating(false)
-    //     }
-    // }
+    async function loginHandler({phone, code}){
+        setIsAuthenticating(true)
+        try{
+            let {data} = await axios.post(`https://verifyonetimepassword${FIREBASE_URL}`, 
+                { phone, code });
+                const token = data.token;
+                authCtx.authenticate(token);
+                navigation.navigate('TabNavigator', {screen: 'Discover'});
+        } catch( error ){
+            Alert.alert('Authentication failed 💩', 'Please check credentials or try again later');
+            setIsAuthenticating(false)
+        }
+    }
 
     if( isAuthenticating ){
         return <LoadingOverlay backgroundColor={COLORS.YELLOW} color={COLORS.LIGHT_BLUE}/>
     }
 
     return(
-        <AuthOTPContent isLogin onAuthenticate={undefined}/>
+        <AuthOTPContent isLogin onAuthenticate={loginHandler}/>
     )
 }

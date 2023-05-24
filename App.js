@@ -42,7 +42,7 @@ function Authenticated(){
   return(
     <AuthenticatedStack.Navigator screenOptions={{headerShown: false}}>
       <AuthenticatedStack.Screen name='UserProfileScreen' component={UserProfileScreen}/>
-      <AuthenticatedStack.Screen name='Welcome' component={TabNavigator}/>
+      <AuthenticatedStack.Screen name='TabNavigator' component={TabNavigator}/>
     </AuthenticatedStack.Navigator>
   )
 }

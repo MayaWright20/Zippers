@@ -54,7 +54,7 @@ export default function UserDetailsForm() {
     function userDetailsFormHandler() {
         const user = new User( enteredName, enteredAlias, userPhotos, userLocation, userCity );
         console.log('send user to firebase', user)
-        navigation.navigate('Welcome', { screen: 'Discover' });
+        navigation.navigate('TabNavigator', { screen: 'Discover' });
     }
 
     return (

@@ -1,38 +1,37 @@
 import axios from 'axios';
 import { FIREBASE_URL} from "@env";
 
-// const api_key = `${API_KEY}`;
+import LoadingOverlay from '../../components/Background/LoadingOverlay';
 
-export async function createUserGetCodeHandler(enteredPhoneNumber, setHasCode, hasCode, setEditable){
-
-    console.log('and we\'re in!',"enteredPhoneNumber", enteredPhoneNumber)
+export async function createUser( enteredPhoneNumber,setHasCode, hasCode, setEditable ){
     try{
-        console.log('are we in heree')
-        await axios.post(`https://createuser${FIREBASE_URL}`, {phone: enteredPhoneNumber });
-        console.log('can we get here?')
-        await axios.post(`https://requestonetimecode${FIREBASE_URL}`, { phone: enteredPhoneNumber });
-        console.log('and we\'re in! 2')
-        setHasCode(!hasCode);
-        console.log('and we\'re in! 3')
-        setEditable(false);
-        console.log('and we\'re in!4')
+        await axios.post(`https://createuser${FIREBASE_URL}`, { phone: enteredPhoneNumber });
+        await getCode(enteredPhoneNumber, setHasCode, hasCode, setEditable)
     }catch( err ){
-        console.log( err, "errrrrr" )
+        return console.log( err, "create user error" )
     }
 }
 
-export async function submitCodeGetTokenHandler(enteredPhoneNumber, verificationCode) {
-    // console.log('This is where you have the code from twilio and you want to verify');
-    // console.log("phoneNumber", enteredPhoneNumber, "CODE", verificationCode)
-    console.log('in submit authOTP')
-
+export async function getCode( enteredPhoneNumber, setHasCode, hasCode, setEditable ){
     try{
-        let { data } = await axios.post(`https://verifyonetimepassword${FIREBASE_URL}`, 
-        { phone: enteredPhoneNumber, code : verificationCode });
-        console.log("DATTTTTA\n\n\n\n\n\n\n", data);
-        console.log("WE HAVE THE DATA", "p",phone, "eN" ,enteredPhoneNumber, "c", code , "v", verificationCode)
-
-    }catch(err){ 
-        console.log(err);
+        await axios.post(`https://requestonetimecode${FIREBASE_URL}`, { phone: enteredPhoneNumber });
+        console.log('OTP requested');
+        setHasCode(!hasCode);
+        setEditable(false);
+    }catch( err ){
+        console.log( err )
     }
 }
+
+
+//same as onAuthenitcate
+// export async function submitCodeGetTokenHandler({phone, code}) {
+//     try{
+//         let {data} = await axios.post(`https://verifyonetimepassword${FIREBASE_URL}`, 
+//         { phone, code });
+//         console.log("data",data)
+        
+//     }catch(err){ 
+//         console.log(err);
+//     }
+// }
