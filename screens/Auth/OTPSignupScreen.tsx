@@ -24,7 +24,7 @@ export default function SignupScreen({ navigation}){
                 authCtx.authenticate(token);
                 navigation.navigate('UserProfileScreen');
             }catch(err){ 
-                Alert.alert('Authentication failed', 'Please check credentials or try again later');
+                Alert.alert('Authentication failed 💩', 'Please check credentials or try again later');
                 setIsAuthenticating(false)
             }
     }
