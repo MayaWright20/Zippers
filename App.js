@@ -6,8 +6,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import AuthContextProvider, {AuthContext} from './store/auth-context';
+import AuthOTPContextProvider, {AuthOTPContext} from './store/authOTP-context';
 import AuthScreen from './screens/Auth/AuthScreen';
 import LoginScreen from './screens/Auth/LoginScreen';
+import OTPLoginScreen from './screens/Auth/OTPLoginScreen';
+import OTPSignupScreen from './screens/Auth/OTPSignupScreen';
 import SignupScreen from './screens/Auth/SignupScreen';
 import UserProfileScreen from './screens/Auth/UserProfileScreen';
 import WelcomeScreen from './screens/Welcome';
@@ -26,8 +29,11 @@ function Unauthenticated(){
   return(
     <UnauthenticatedStack.Navigator screenOptions={{headerShown: false}}>
       <UnauthenticatedStack.Screen name="AuthScreen" component={ AuthScreen } options={{headerShown: false}}/>
-      <UnauthenticatedStack.Screen name="LoginScreen" component={ LoginScreen } options={{headerShown: false}}/>
-      <UnauthenticatedStack.Screen name="SignupScreen" component={ SignupScreen } options={{headerShown: false}}/>
+      {/* CHANGE THE NAME FORE LOGINSCREEN AND SIGNUO SCREEN NAMES */}
+      <UnauthenticatedStack.Screen name="LoginScreen" component={ OTPLoginScreen } options={{headerShown: false}}/>
+      <UnauthenticatedStack.Screen name="SignupScreen" component={ OTPSignupScreen } options={{headerShown: false}}/>
+      {/* <UnauthenticatedStack.Screen name="LoginScreen" component={ LoginScreen } options={{headerShown: false}}/>
+      <UnauthenticatedStack.Screen name="SignupScreen" component={ SignupScreen } options={{headerShown: false}}/> */}
     </UnauthenticatedStack.Navigator>
   )
 }
@@ -62,9 +68,12 @@ function TabNavigator(){
 }
 
 function Naviagtion(){
-  const authCtx = useContext(AuthContext);
+  // const authCtx = useContext(AuthContext);
+  const authCtx = useContext(AuthOTPContext);
   return(
     <NavigationContainer>
+      {/* {!authCtx.isAuthenticated && <Unauthenticated/>}
+      {authCtx.isAuthenticated && <Authenticated/>} */}
       {!authCtx.isAuthenticated && <Unauthenticated/>}
       {authCtx.isAuthenticated && <Authenticated/>}
     </NavigationContainer>
@@ -73,9 +82,11 @@ function Naviagtion(){
 
 export default function App() {
   return (
-    <AuthContextProvider>
+    // <AuthContextProvider>
+    <AuthOTPContextProvider>
       <Naviagtion/>
-    </AuthContextProvider>
+    </AuthOTPContextProvider>
+    // </AuthContextProvider>
   );
 }
 

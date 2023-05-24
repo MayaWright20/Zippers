@@ -10,13 +10,15 @@ import { FORM_STYLING } from '../../constants/FORM_STYLING';
 import { WINDOW_WIDTH } from '../../constants/DIMENSIONS';
 // import { FIREBASE_AUTH_PATH } from '../../constants/FIREBASE_URL';
 
+import {createUserGetCodeHandler, submitCodeGetTokenHandler} from '../../utils/authOTP';
+
 
 import BackButton from '../Buttons/BackButton';
 import FormInput from '../FormInputs/FormInput';
 import FormUnderlineInput from '../FormInputs/FormUnderlineInput';
 
 
-export default function AuthOTP({ isLogin, onSubmit, credentialsInvalid }) {
+export default function AuthOTP({ isLogin, credentialsInvalid, onSubmit }) {
 
     const navigation = useNavigation();
 
@@ -39,38 +41,7 @@ export default function AuthOTP({ isLogin, onSubmit, credentialsInvalid }) {
         phoneNumber: phoneNumberIsInvalid,
     } = credentialsInvalid;
 
-
-    async function getCodeHandler(){
-        try{
-            await axios.post(`https://createuser${FIREBASE_URL}`, {phone: enteredPhoneNumber });
-            await axios.post(`https://requestonetimecode${FIREBASE_URL}`, { phone: enteredPhoneNumber });
-            setHasCode(!hasCode);
-            setEditable(false)
-        }catch( err ){
-            console.log( err )
-        }
-    }
-
-    async function submitCodeHandler() {
-        console.log('This is where you have the code from twilio and you want to verify');
-        console.log("phoneNumber", enteredPhoneNumber, "CODE", verificationCode)
-
-        try{
-            let { data } = await axios.post(`https://verifyonetimepassword${FIREBASE_URL}`, 
-            { phone: enteredPhoneNumber, code : verificationCode });
-            console.log("DATTTTTA\n\n\n\n\n\n\n", data);
-
-        }catch(err){ 
-            console.log(err);
-        }
-        // onSubmit({
-        //     phoneNumber: enteredPhoneNumber,
-        // });
-    }
-
-
-
-    function updateInputValueHandler(inputType, enteredValue) {
+    function updateInputValueHandler( inputType, enteredValue ) {
 
         switch (inputType) {
             case 'phoneNumber':
@@ -90,7 +61,17 @@ export default function AuthOTP({ isLogin, onSubmit, credentialsInvalid }) {
                 setEnteredVerificationCode4(enteredValue);
                 break;
         }
+    }
 
+    function getCodeHandler(){
+        createUserGetCodeHandler(enteredPhoneNumber, setHasCode, hasCode, setEditable)
+    }
+
+    function submitCodeHandler(){
+        onSubmit({
+            phone: enteredPhoneNumber,
+            code: verificationCode
+        });
     }
 
     return (
@@ -165,9 +146,7 @@ export default function AuthOTP({ isLogin, onSubmit, credentialsInvalid }) {
 
 
             }
-            <Button title={!hasCode? 'Get Code 👉' : 'Sign up 👉'} onPress={!hasCode ? getCodeHandler : submitCodeHandler } />
-
-            {/* <Button title={!isLogin ? 'Next 👉' : 'Log in 👉'} onPress={!isLogin ? createUserHandler : submitHandler } /> */}
+            <Button title={!hasCode? 'Get Code 👉' : 'Log in 👉'} onPress={!hasCode ? getCodeHandler : submitCodeHandler } />
         </View>
     )
 }

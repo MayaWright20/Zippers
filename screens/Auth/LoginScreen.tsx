@@ -14,9 +14,9 @@ export default function LoginScreen(){
 
     async function loginHandler({email, password}){
         setIsAuthenticating(true)
-
         try{
             const token = await login(email, password);
+            
             authCtx.authenticate(token);
         } catch( error ){
             console.log("login error",error)

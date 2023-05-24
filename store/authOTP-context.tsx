@@ -1,13 +1,13 @@
 import { createContext, useState } from 'react';
 
-export const AuthContext = createContext({
+export const AuthOTPContext = createContext({
     token: '',
     isAuthenticated: false,
     authenticate: (token) => {},
     logout: () => {}
 });
 
-export default function AuthContextProvider({ children }){
+export default function AuthOTPContextProvider({ children }){
     const [ authToken, setAuthToken ] = useState();
 
     function authenticate( token ){
@@ -25,5 +25,5 @@ export default function AuthContextProvider({ children }){
         logout: logout
     }
 
-    return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+    return <AuthOTPContext.Provider value={value}>{children}</AuthOTPContext.Provider>;
 }

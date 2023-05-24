@@ -3,28 +3,35 @@ import { View, Text, Alert } from 'react-native';
 
 import AuthOTPForm from './AuthOTPForm';
 
-export default function AuthOTPContent( isLogin, onAuthenticate ){
+import { submitCodeGetTokenHandler } from '../../utils/authOTP';
+
+export default function AuthOTPContent({ isLogin, onAuthenticate }){
 
     const [credentialsInvalid, setCredentialsInvalid] = useState({
-        phoneNumber: false,
+        code: false,
     });
 
     function submitHandler( credentials ) {
+        // ({enteredPhoneNumber, verificationCode});
+        // console.log("phone 1", phone, "code", code,"credentials", credentials)
+        let { phone, code } = credentials;
+        console.log("phone 2", phone, "code", code,"credentials", credentials)
+        console.log("COOOOOODE LENGTH", code)
+        // phone = phone.trim();
+
+        // const phoneIsValid = phone.length > 0 && phone.length <= 14;
         
-        let { phoneNumber } = credentials;
 
-        phoneNumber = phoneNumber.trim();
-
-        const phoneNumberIsValid = phoneNumber.length > 0 && phoneNumber.length <= 14;
-
-        if ( !phoneNumberIsValid ) {
-            Alert.alert('Invalid input', 'Please check your entered phone number.');
-            setCredentialsInvalid({
-                phoneNumber: !phoneNumberIsValid
-            });
-            return;
-        }
-        onAuthenticate({ phoneNumber });
+        // if ( !codeIsValid ) {
+        //     Alert.alert('Invalid Code 💩', 'Please check your entered phone number .');
+        //     setCredentialsInvalid({
+        //         code: true
+        //     });
+        //     return;
+        // }
+        
+        console.log("here", phone, code)
+        onAuthenticate( {phone, code });
     }
 
     return(

@@ -1,24 +1,38 @@
 import axios from 'axios';
-import { API_KEY} from "@env";
+import { FIREBASE_URL} from "@env";
 
-const api_key = `${API_KEY}`;
+// const api_key = `${API_KEY}`;
 
-async function authenticate(mode, email, password){
-    const url = `https://identitytoolkit.googleapis.com/v1/accounts:${mode}?key=${api_key}`
+export async function createUserGetCodeHandler(enteredPhoneNumber, setHasCode, hasCode, setEditable){
 
-    const response = await axios.post(url, {
-        email: email,
-        password: password,
-        returnSecureToken: true
-    });
-    const token = response.data.idToken;
-    return token;
+    console.log('and we\'re in!',"enteredPhoneNumber", enteredPhoneNumber)
+    try{
+        console.log('are we in heree')
+        await axios.post(`https://createuser${FIREBASE_URL}`, {phone: enteredPhoneNumber });
+        console.log('can we get here?')
+        await axios.post(`https://requestonetimecode${FIREBASE_URL}`, { phone: enteredPhoneNumber });
+        console.log('and we\'re in! 2')
+        setHasCode(!hasCode);
+        console.log('and we\'re in! 3')
+        setEditable(false);
+        console.log('and we\'re in!4')
+    }catch( err ){
+        console.log( err, "errrrrr" )
+    }
 }
 
-export function createUser(email, password) {
-    return authenticate('signUp', email, password);
-}
+export async function submitCodeGetTokenHandler(enteredPhoneNumber, verificationCode) {
+    // console.log('This is where you have the code from twilio and you want to verify');
+    // console.log("phoneNumber", enteredPhoneNumber, "CODE", verificationCode)
+    console.log('in submit authOTP')
 
-export function login(email, password){
-    return authenticate('signInWithPassword', email, password);
+    try{
+        let { data } = await axios.post(`https://verifyonetimepassword${FIREBASE_URL}`, 
+        { phone: enteredPhoneNumber, code : verificationCode });
+        console.log("DATTTTTA\n\n\n\n\n\n\n", data);
+        console.log("WE HAVE THE DATA", "p",phone, "eN" ,enteredPhoneNumber, "c", code , "v", verificationCode)
+
+    }catch(err){ 
+        console.log(err);
+    }
 }
