@@ -13,4 +13,4 @@ node_modules/
 service_account.json
 
 
-src/service_account.json
+functions/src/service_account.json
