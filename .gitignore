@@ -19,4 +19,4 @@ web-build/
 # Temporary files created by Metro to check the health of the file watcher
 .metro-health-check*
 
-firebase/functions/src/service_account.json
+firebase/functions/src/service_account
