@@ -8,14 +8,12 @@ import { useNavigation } from '@react-navigation/native';
 import { COLORS } from '../../constants/COLORS';
 import { FORM_STYLING } from '../../constants/FORM_STYLING';
 import { WINDOW_WIDTH } from '../../constants/DIMENSIONS';
-// import { FIREBASE_AUTH_PATH } from '../../constants/FIREBASE_URL';
 
 import {createUser, getCode } from '../../utils/authOTP';
 
 
 import BackButton from '../Buttons/BackButton';
 import FormInput from '../FormInputs/FormInput';
-import FormUnderlineInput from '../FormInputs/FormUnderlineInput';
 
 
 export default function AuthOTP({ isLogin, credentialsInvalid, onSubmit }) {

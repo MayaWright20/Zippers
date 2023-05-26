@@ -16,10 +16,8 @@ export default function LoginScreen(){
         setIsAuthenticating(true)
         try{
             const token = await login(email, password);
-            
             authCtx.authenticate(token);
         } catch( error ){
-            console.log("login error",error)
             Alert.alert('Authentication failed', 'Please check credentials or try again later');
             setIsAuthenticating(false)
         }

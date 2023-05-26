@@ -15,7 +15,7 @@ export default function SignupScreen({ navigation}){
     const authCtx = useContext(AuthOTPContext);
 
     async function signupHandler({phone, code}){
-        console.log('signup handler')
+
         setIsAuthenticating(true)
             try{
                 let {data} = await axios.post(`https://verifyonetimepassword${FIREBASE_URL}`, 

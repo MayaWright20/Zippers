@@ -11,9 +11,7 @@ export default function AuthContextProvider({ children }){
     const [ authToken, setAuthToken ] = useState();
 
     function authenticate( token ){
-        console.log("setAuthToken 1", token)
         setAuthToken( token );
-        console.log("setAuthToken", token)
     }
 
     function logout(){
