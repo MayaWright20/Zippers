@@ -47,14 +47,6 @@ function Authenticated(){
   )
 }
 
-function ProfileScreens(){
-  return(
-    <ProfilesStack.Navigator screenOptions={{headerShown: false}}>
-      <ProfilesStack.Screen name='DisplayedProfile' component={ProfileScreen}/>
-      <ProfilesStack.Screen name='Settings' component={SettingsScreen}/>
-    </ProfilesStack.Navigator>
-  )
-}
 
 function TabNavigator(){
 
@@ -64,6 +56,15 @@ function TabNavigator(){
       <BottomTabNavigator.Screen name="Chat" component={ ChatScreen }/>
       <BottomTabNavigator.Screen name="Profile" component={ ProfileScreens }/>
     </BottomTabNavigator.Navigator>
+  )
+}
+
+function ProfileScreens(){
+  return(
+    <ProfilesStack.Navigator screenOptions={{headerShown: false}}>
+      <ProfilesStack.Screen name='DisplayedProfile' component={ProfileScreen}/>
+      <ProfilesStack.Screen name='Settings' component={SettingsScreen}/>
+    </ProfilesStack.Navigator>
   )
 }
 
