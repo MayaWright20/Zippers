@@ -1,0 +1,130 @@
+{
+    "title": "Kanban",
+    "cols": [
+        {
+            "title": "Bugs",
+            "tasks": [
+                {
+                    "text": "if user signs up and gets a sms text with a code, they can go straight to login without using the code, request another code and use the new login code. (I think it works the same on hinge - need to test)",
+                    "id": "cli4he009000a40649ovd0u86"
+                },
+                {
+                    "text": "update gitignore so that all the secrets ect arent in the git commits",
+                    "id": "cli4apjsx000a4064mzuiyf5k"
+                },
+                {
+                    "text": "CHANGE ALL API/ SECRETS TO NEW ONES SO THAT IT IS NOT EXPOSED WHEN COMMITTING TO GITHUB",
+                    "id": "clhyzxm3z000a4064h5xr8dj9"
+                },
+                {
+                    "text": "clicking off the number pad is not easy. figure out a way to have the return word on the keyboard so the keyboard goes away easier",
+                    "id": "clhyq34lj000a40647d8auxdb"
+                }
+            ],
+            "id": "clhnlm5vc000a4064ktda24xa",
+            "color": "#eb144c"
+        },
+        {
+            "title": "To-Do",
+            "tasks": [
+                {
+                    "text": "make firebase 'create token' a seperate fierbase function",
+                    "id": "clia1rcfp000a4064abllv8cu"
+                },
+                {
+                    "text": "make the loading page show when requesting text log in and sign up log in",
+                    "id": "cli4aprjz000b4064rv4eeb16"
+                },
+                {
+                    "text": "add nice styling to profile/ profiles",
+                    "id": "clhq6i45v000b4064kv5hf04t"
+                },
+                {
+                    "text": "add firebase functionality for setting up details for the profile",
+                    "id": "clhpc6ekl000c4064nk15tpcb"
+                },
+                {
+                    "text": "refactor and styling so each page looks nice",
+                    "id": "clhpc6uc7000d4064gdw3hdjz"
+                },
+                {
+                    "text": "if profile is swiped right - add a flat that says true. If the profile is swiped left add a flag that shows the profile as false. \n\nif the profile has not been seen yet than have the profile have a flag of undefined. ",
+                    "id": "clhpc4t1a000b406432yltw25"
+                },
+                {
+                    "text": "\n\nsend the information about the profile to the chat screen. \n\n",
+                    "id": "clhpc40pc000a4064xo3ybpxb"
+                },
+                {
+                    "text": "set up chat ability",
+                    "id": "clhq6ihm4000c4064ubinvj94"
+                },
+                {
+                    "text": "add Zippers button and background text to be the same on every screen in the Auth form",
+                    "id": "clhuk8qfn000a406422gicd9k"
+                },
+                {
+                    "text": "change the animation of the card so that its dependant on how fast a person swipes in stead of how far they swipe",
+                    "id": "clia2e3ge000b4064hdqmji98"
+                }
+            ],
+            "id": "clhnlm5vc000c4064gpj4ragw",
+            "color": "#fcb900"
+        },
+        {
+            "title": "Doing",
+            "tasks": [],
+            "id": "clhnlm5vc000d4064l6gmren9",
+            "color": "#0693e3"
+        },
+        {
+            "title": "Done",
+            "tasks": [
+                {
+                    "text": "set up functionality so that the phone number page is before any other sign up stuff",
+                    "id": "clhxm8hsn000a40643tuyn8er"
+                },
+                {
+                    "text": "set up onetime password with firebase",
+                    "id": "clhq6hotj000a406436c9i3p6"
+                },
+                {
+                    "text": "add transition to second card showing zippers background to show nicely",
+                    "id": "clhp8nyx8000a4064xqvz7fzy"
+                },
+                {
+                    "text": "sort out background for chat screen and profileScreen. Add SafeAreaView",
+                    "id": "clhnlm6u1000f4064bkwigllb"
+                },
+                {
+                    "text": "change all constants to be UPPER_CASE",
+                    "id": "clhnlm5vc000b4064w1oqoukd"
+                },
+                {
+                    "text": "change opacity of backgroundColour on second card in swipeDeck so you can see the next card",
+                    "id": "clhpaplow000b4064686rdtvq"
+                }
+            ],
+            "id": "clhnlm5vc000e4064j9pm8lnb",
+            "color": "#00d084"
+        },
+        {
+            "title": "Notes",
+            "tasks": [
+                {
+                    "text": "arrow functions take care of the bind key word and this so  you dont need to use this or bind",
+                    "id": "clhyq40fd000b4064vhnv1j1w"
+                },
+                {
+                    "text": "anything that has an underline on width or height should be changed to \nstyle={{ width: 100, height: 100}}",
+                    "id": "clhpbtpvh000d4064fbv7ks4s"
+                }
+            ],
+            "id": "clhpbtjsg000c4064qpzgiglh",
+            "color": "var(--vscode-editor-foreground)"
+        }
+    ],
+    "autosave": true,
+    "saveToFile": true,
+    "timestamp": 1685438253209
+}
