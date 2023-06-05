@@ -18,7 +18,7 @@ export default function SignupScreen({ navigation}){
 
         setIsAuthenticating(true)
             try{
-                let {data} = await axios.post(`https://verifyonetimepassword${FIREBASE_URL}`, 
+                let {data} = await axios.post(`https://verifyonetimecode${FIREBASE_URL}`, 
                 { phone, code });
                 const token = data.token;
                 authCtx.authenticate(token);

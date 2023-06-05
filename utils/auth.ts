@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { API_KEY} from "@env";
+import { GOOGLE_API_KEY} from "@env";
 
-const api_key = `${API_KEY}`;
+const api_key = `${GOOGLE_API_KEY}`;
 
 async function authenticate(mode, email, password){
     const url = `https://identitytoolkit.googleapis.com/v1/accounts:${mode}?key=${api_key}`

@@ -17,7 +17,7 @@ export default function OTPLoginScreen({navigation}){
     async function loginHandler({phone, code}){
         setIsAuthenticating(true)
         try{
-            let {data} = await axios.post(`https://verifyonetimepassword${FIREBASE_URL}`, 
+            let {data} = await axios.post(`https://verifyonetimecode${FIREBASE_URL}`, 
                 { phone, code });
                 const token = data.token;
                 authCtx.authenticate(token);

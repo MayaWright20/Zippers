@@ -1,9 +1,0 @@
-{
-  "devDependencies": {
-    "react-native-dotenv": "^3.4.8"
-  },
-  "dependencies": {
-    "firebase-functions": "^4.4.0",
-    "twilio": "^4.11.1"
-  }
-}

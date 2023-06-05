@@ -1,7 +1,7 @@
-const API_KEY = 'AIzaSyBmn9-BUNrwGGntbKsVruvPFP_Qe0ycfO0';
+import { GOOGLE_API_KEY} from "@env";
 
 export async function getAddress(lat, long){
-    const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&key=${API_KEY}`; 
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&key=${GOOGLE_API_KEY}`; 
     const response = await fetch(url);
 
     if( !response.ok ){
