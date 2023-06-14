@@ -52,7 +52,6 @@ export default function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
         
         switch( inputType ){
             case 'email':
-                console.log('email', inputType, enteredValue)
                 setEnteredEmail(enteredValue);
                 break;
             case 'confirmEmail':
@@ -77,7 +76,7 @@ export default function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
     }
 
     return (
-        <View style={[{ ...FORM_STYLING.formContainer, backgroundColor: !isLogin ? COLORS.BABY_PINK : COLORS.YELLOW , flex: 1 }]}>
+        <View style={[{ ...FORM_STYLING.formContainer, backgroundColor: !isLogin ? COLORS.LIGHT_PINK : COLORS.YELLOW, flex: 1}]}>
             <BackButton onPress={BackButtonHandler} />
             <Text style={{ ...FORM_STYLING.formTitle }}>{ !isLogin ? 'Sign up' : 'Log in'}</Text>
             <FormInput label="Email" labelStyle={{ color: 'black' }} inputStyle={{ backgroundColor: !isLogin ? COLORS.LIGHT_AQUA : COLORS.LIGHT_BLUE }}
@@ -144,7 +143,7 @@ export default function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
                     />
                 </View>
             )}
-            <Button title={ !isLogin ? 'Sign up 👉' : 'Log in 👉'} onPress={submitHandler}/>
+            <Button title={ !isLogin ? 'Next 👉' : 'Log in 👉'} onPress={submitHandler}/>
         </View>
     )
 }

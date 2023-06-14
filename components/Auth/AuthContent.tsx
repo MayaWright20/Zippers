@@ -1,5 +1,8 @@
 import { useState } from 'react';
-import { Alert, View } from 'react-native';
+import { Alert, View, Text } from 'react-native';
+
+import { FORM_STYLING } from '../../constants/FORM_STYLING';
+import { COLORS } from '../../constants/COLORS';
 
 import AuthForm from './AuthForm';
 import AuthOTPContent from './AuthOTPContent';
@@ -61,8 +64,7 @@ export default function AuthContent({ isLogin, onAuthenticate }) {
     }
 
     return (
-        <View style={{ flex: 1 }}>
-            <AuthOTPContent/>
+        <View style={{flex: 1}}>
             <AuthForm
                 isLogin={isLogin}
                 credentialsInvalid={credentialsInvalid}

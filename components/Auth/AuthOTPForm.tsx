@@ -43,7 +43,6 @@ export default function AuthOTP({ isLogin, credentialsInvalid, onSubmit }) {
 
         switch (inputType) {
             case 'phoneNumber':
-                console.log('phoneNumber', inputType, enteredValue)
                 setEnteredPhoneNumber(enteredValue);
                 break;
             case 'verificationCode1':

@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { Alert } from 'react-native';
+import { Alert, View, Text } from 'react-native';
 import AuthContent from '../../components/Auth/AuthContent';
 import LoadingOverlay from '../../components/Background/LoadingOverlay';
 
@@ -28,6 +28,9 @@ export default function LoginScreen(){
     }
 
     return(
-        <AuthContent isLogin onAuthenticate={loginHandler}/>
+        <View>
+            <Text>Hi</Text>
+            <AuthContent isLogin onAuthenticate={loginHandler}/>
+        </View>
     )
 }
