@@ -1,23 +1,19 @@
 import React, { useState } from 'react';
-import { View, Button, Text } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { View, Button } from 'react-native';
 
-import { User } from '../../models/user';
+import { collection, addDoc } from "firebase/firestore";
+import { db } from '../../firebase/config'
+
 import { COLORS } from '../../constants/COLORS';
-import { FORM_STYLING } from '../../constants/FORM_STYLING';
 
 import FormInput from '../FormInputs/FormInput';
-import BackButton from '../Buttons/BackButton';
-import Constants from 'expo-constants';
 import PhotoPicker from '../Photos/PhotoPicker';
 import AddLocation from '../Location/AddLocation';
 
-export default function UserDetailsForm() {
+export default function UserDetailsForm({navTo}) {
 
     const [enteredName, setEnteredName] = useState('');
-    const [enteredEmail, setEnteredEmail] = useState('');
     const [enteredAlias, setEnteredAlias] = useState('');
-
     const [userCity, setUserCity] = useState('');
 
     function updateUserCity(cityValue) {
@@ -32,8 +28,6 @@ export default function UserDetailsForm() {
 
     const [userPhotos, setUserPhotos] = useState([]);
 
-
-
     function updateUserPhotos(photos) {
         setUserPhotos(photos);
     }
@@ -44,30 +38,32 @@ export default function UserDetailsForm() {
                 setEnteredName(enteredValue);
                 break;
             case 'alias':
-                setEnteredEmail(enteredValue);
-                break;
-            case 'alias':
                 setEnteredAlias(enteredValue);
                 break;
         }
     }
 
-    const navigation = useNavigation();
+    async function userDetailsFormHandler() {
 
-    function userDetailsFormHandler() {
+            try {
+                console.log('add to firestore');
+                const docRef = await addDoc(collection(db, "userDetails"), {
+                    name: enteredName,
+                    alias: enteredAlias,
+                    photos: userPhotos,
+                    location: userLocation,
+                    city: userCity
+                });
 
-
-
-
-
-        const user = new User(enteredName, enteredEmail, enteredAlias, userPhotos, userLocation, userCity);
-        console.log('send user to firebase', user)
-        navigation.navigate('TabNavigator', { screen: 'Discover' });
+                navTo();
+            } catch (e) {
+                console.error("Error adding document:", e);
+            }
     }
 
     return (
         <View>
-            <FormInput label="Name (Not shown on profile)" labelStyle={{ color: 'black' }} inputStyle={{ backgroundColor: COLORS.LIGHT_AQUA }}
+            <FormInput label="Full name (Not shown on profile)" labelStyle={{ color: 'black' }} inputStyle={{ backgroundColor: COLORS.LIGHT_AQUA }}
                 onChangeText={updateInputValueHandler.bind(this, 'name')}
                 value={enteredName}
                 isInvalid={undefined}

@@ -10,7 +10,7 @@ import BackButton from '../Buttons/BackButton';
 import FormInput from '../FormInputs/FormInput';
 
 
-export default function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
+export default function AuthForm({ isLogin, onSubmit, credentialsInvalid, showModal }) {
 
     const navigation = useNavigation();
 
@@ -37,6 +37,7 @@ export default function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
     } = credentialsInvalid;
 
     function submitHandler() {
+        {!isLogin? showModal() : null}
         onSubmit({
             email: enteredEmail,
             confirmEmail: enteredConfirmEmail,
@@ -77,7 +78,7 @@ export default function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
 
     return (
         <View style={[{ ...FORM_STYLING.formContainer, backgroundColor: !isLogin ? COLORS.LIGHT_PINK : COLORS.YELLOW, flex: 1}]}>
-            <BackButton onPress={BackButtonHandler} />
+            {isLogin?<BackButton onPress={BackButtonHandler} />:null}
             <Text style={{ ...FORM_STYLING.formTitle }}>{ !isLogin ? 'Sign up' : 'Log in'}</Text>
             <FormInput label="Email" labelStyle={{ color: 'black' }} inputStyle={{ backgroundColor: !isLogin ? COLORS.LIGHT_AQUA : COLORS.LIGHT_BLUE }}
             onChangeText={updateInputValueHandler.bind(this, 'email')}
