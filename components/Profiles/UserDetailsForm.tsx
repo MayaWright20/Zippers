@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Button } from 'react-native';
 
-import { collection, addDoc } from "firebase/firestore";
+import { setDoc, doc } from "firebase/firestore";
 import { db } from '../../firebase/config'
 
 import { COLORS } from '../../constants/COLORS';
@@ -9,6 +9,7 @@ import { COLORS } from '../../constants/COLORS';
 import FormInput from '../FormInputs/FormInput';
 import PhotoPicker from '../Photos/PhotoPicker';
 import AddLocation from '../Location/AddLocation';
+import { phoneNumber } from '../Auth/AuthOTPForm';
 
 export default function UserDetailsForm({navTo}) {
 
@@ -46,15 +47,13 @@ export default function UserDetailsForm({navTo}) {
     async function userDetailsFormHandler() {
 
             try {
-                console.log('add to firestore');
-                const docRef = await addDoc(collection(db, "userDetails"), {
+                await setDoc(doc(db, phoneNumber, "userDetails"), {
                     name: enteredName,
                     alias: enteredAlias,
                     photos: userPhotos,
                     location: userLocation,
                     city: userCity
-                });
-
+                }, { merge: true });
                 navTo();
             } catch (e) {
                 console.error("Error adding document:", e);

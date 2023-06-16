@@ -16,6 +16,7 @@ import { getDocs } from 'firebase/firestore';
 import { collection, addDoc, doc, updateDoc, deleteField } from "firebase/firestore";
 import { db } from '../../firebase/config'
 
+
 export default function SignupScreen() {
 
     const [modalVisible, setModalVisible] = useState(false);
@@ -28,34 +29,10 @@ export default function SignupScreen() {
     }
 
 
-    async function signupHandler() {
+    function signupHandler() {
 
         
 
-        // try {
-            
-        //     console.log('add to firestore');
-        //     const docRef = await addDoc(collection(db, "userDetails"), {
-        //         first: "Ada",
-        //         last: "Lovelace",
-        //         born: 1815
-        //     });
-        //     console.log("Document written with ID:", docRef.id);
-        //     console.log("Document written with ID:")
-        // } catch (e) {
-        //     console.error("Error adding document:", e);
-        // }
-
-
-
-        // getCities()
-        // async function getCities() {
-        //     const citiesCol = collection(db, 'cities');
-        //     const citySnapshot = await getDocs(citiesCol);
-        //     const cityList = citySnapshot.docs.map(doc => doc.data());
-        //     console.log(cityList)
-        //     return cityList;
-        // }
 
 
 

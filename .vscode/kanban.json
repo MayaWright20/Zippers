@@ -28,8 +28,8 @@
             "title": "To-Do",
             "tasks": [
                 {
-                    "text": "make firebase 'create token' a seperate fierbase function",
-                    "id": "clia1rcfp000a4064abllv8cu"
+                    "text": "Add functionality in chat: \n\n- contact details button -if person requests contact details you have a week to respond or else you disconnect from each other\n\n- meet up button - sends details or where and when to meet \n\n- other 'fun' functionalities",
+                    "id": "clixjxz2w000a4064ov4n5ak9"
                 },
                 {
                     "text": "make the loading page show when requesting text log in and sign up log in",
@@ -38,10 +38,6 @@
                 {
                     "text": "add nice styling to profile/ profiles",
                     "id": "clhq6i45v000b4064kv5hf04t"
-                },
-                {
-                    "text": "add firebase functionality for setting up details for the profile",
-                    "id": "clhpc6ekl000c4064nk15tpcb"
                 },
                 {
                     "text": "refactor and styling so each page looks nice",
@@ -73,13 +69,22 @@
         },
         {
             "title": "Doing",
-            "tasks": [],
+            "tasks": [
+                {
+                    "text": "change firebase functionality so that the userdetails is created on a single document. link this to the uid\n\nhttps://firebase.google.com/docs/firestore/manage-data/add-data",
+                    "id": "clixjlknb000a4064vjqfjp70"
+                }
+            ],
             "id": "clhnlm5vc000d4064l6gmren9",
             "color": "#0693e3"
         },
         {
             "title": "Done",
             "tasks": [
+                {
+                    "text": "add firebase functionality for setting up details for the profile",
+                    "id": "clhpc6ekl000c4064nk15tpcb"
+                },
                 {
                     "text": "set up functionality so that the phone number page is before any other sign up stuff",
                     "id": "clhxm8hsn000a40643tuyn8er"
@@ -126,5 +131,5 @@
     ],
     "autosave": true,
     "saveToFile": true,
-    "timestamp": 1685438253209
+    "timestamp": 1686858692770
 }

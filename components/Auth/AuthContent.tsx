@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { Alert, View } from 'react-native';
 
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, doc, setDoc } from "firebase/firestore";
 import { db } from '../../firebase/config'
 
 import AuthForm from './AuthForm';
+import { phoneNumber } from './AuthOTPForm';
 
 export default function AuthContent({ isLogin, onAuthenticate, showModal }) {
 
@@ -19,7 +20,7 @@ export default function AuthContent({ isLogin, onAuthenticate, showModal }) {
     });
 
     function submitHandler(credentials) {
-        
+
         let { email, confirmEmail, password, confirmPassword, yearOfBirth, monthOfBirth, dayOfBirth } = credentials;
 
         const age = new Date(yearOfBirth, monthOfBirth - 1, dayOfBirth);
@@ -62,14 +63,42 @@ export default function AuthContent({ isLogin, onAuthenticate, showModal }) {
             });
             return;
         }
+
+
+
+
+
+        
+
+        // const cityRef = doc(db, 'cities', 'BJ');
+        // setDoc(cityRef, { capital: true }, { merge: true });
+        
+        
         async function addEmailAgeFirestore() {
             try {
                 console.log('add to firestore');
-                const docRef = await addDoc(collection(db, "userDetails"), {
+                // const docRef = await addDoc(collection(db, "userDetails"), {
+                //     email: email,
+                //     age: ageInYears
+                // });
+                // const cityRef = doc(db, 'cities', 'BJ');
+                // setDoc(cityRef, { capital: true }, { merge: true });
+                
+
+                //need to access the phone number 
+                // await setDoc(doc(db, phoneNumber, "userDetails"), {
+                //     email: email,
+                //     age: ageInYears
+                // }, { merge: true });
+
+                await setDoc(doc(db, phoneNumber, "userDetails"), {
                     email: email,
                     age: ageInYears
-                });
-                console.log("Document written with ID:", docRef.id);
+                }, { merge: true });
+
+
+                // console.log("Document written with ID:", docRef.id);
+                console.log("Document written with ID")
             } catch (e) {
                 console.error("Error adding document:", e);
             }
@@ -79,13 +108,13 @@ export default function AuthContent({ isLogin, onAuthenticate, showModal }) {
     }
 
     return (
-        <View style={{flex: 1}}>
+        <View style={{ flex: 1 }}>
             <AuthForm
                 isLogin={isLogin}
                 credentialsInvalid={credentialsInvalid}
-                onSubmit={submitHandler} 
-                showModal={showModal}            
-                />
+                onSubmit={submitHandler}
+                showModal={showModal}
+            />
         </View>
     )
 };

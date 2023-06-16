@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { FIREBASE_URL } from "@env";
+import { collection, addDoc, doc, setDoc } from "firebase/firestore";
+import { db } from '../../firebase/config'
 
 import { View, Button, Text, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -14,6 +16,8 @@ import {createUser, getCode } from '../../utils/authOTP';
 
 import BackButton from '../Buttons/BackButton';
 import FormInput from '../FormInputs/FormInput';
+
+export let phoneNumber;
 
 
 export default function AuthOTP({ isLogin, credentialsInvalid, onSubmit }) {
@@ -31,6 +35,7 @@ export default function AuthOTP({ isLogin, credentialsInvalid, onSubmit }) {
     const [enteredVerificationCode3, setEnteredVerificationCode3] = useState('');
     const [enteredVerificationCode4, setEnteredVerificationCode4] = useState('');
 
+    phoneNumber = enteredPhoneNumber;
     const verificationCode = enteredVerificationCode1 + enteredVerificationCode2 + enteredVerificationCode3 + enteredVerificationCode4;
 
     const [hasCode, setHasCode] = useState(false);
@@ -75,7 +80,31 @@ export default function AuthOTP({ isLogin, credentialsInvalid, onSubmit }) {
             phone: enteredPhoneNumber,
             code: verificationCode
         });
+        createFirestoreUser()
     }
+
+    async function createFirestoreUser(){
+        if(!isLogin){
+        try {
+            console.log('add to firestore');
+            // const docRef = await addDoc(collection(db, enteredPhoneNumber), {
+            //     phone: enteredPhoneNumber
+            // });
+            await setDoc(doc(db, enteredPhoneNumber, "userDetails"), {
+                phone: enteredPhoneNumber
+            }, { merge: true });
+            // console.log("Document written with ID:", docRef.id);
+        } catch (e) {
+            console.error("Error adding document:", e);
+        }}else{
+            return
+        }
+    }
+
+    
+
+
+
     const title = !hasCode ? 'Get Code 👉' : (hasCode && isLogin ? 'Log in 👉' : 'Sign up 👉');
 
     return (
