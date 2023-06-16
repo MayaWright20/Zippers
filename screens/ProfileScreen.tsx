@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect,useLayoutEffect, useRef, useState } from 'react';
 import { Pressable, View, ScrollView, Text, Image, Button, Dimensions, Animated, StyleSheet } from 'react-native';
 import ZippersButton from '../components/Buttons/ZippersButtons';
 import CircleButton from '../components/Buttons/CircleButton';
@@ -8,8 +8,50 @@ import { AuthContext } from '../store/auth-context';
 import { WINDOW_HEIGHT } from '../constants/DIMENSIONS';
 import { WINDOW_WIDTH } from '../constants/DIMENSIONS';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { doc, getDoc } from "firebase/firestore";
+import { db } from '../firebase/config';
+import { phoneNumber } from '../components/Auth/AuthOTPForm';
 
 export default function ProfileScreen({ navigation }) {
+    const [alias, setAlias] = useState('alias');
+    const [age, setAge] = useState('age');
+    // const [photos, setPhotos] = useState([]);
+    
+
+    
+    async function getUserDetails() {
+        const docRef = doc(db, phoneNumber, "userDetails");
+        const docSnap = await getDoc(docRef);
+
+            try {
+                if (docSnap.exists()) {
+
+
+                    let data = docSnap.data();
+                    console.log("DATA",data)
+
+                        setAge(data.age);
+                        setAlias(data.alias);
+                        // setPhotos(data.photos);
+
+                } else {
+                    // docSnap.data() will be undefined in this case
+                    console.log("No such document!");
+                }
+            } catch (error) {
+                console.log("error", error)
+            }
+    }
+
+
+    useEffect(()=>{
+        getUserDetails()
+    },[])
+    
+    
+    console.log("AGE", age)
+    console.log("ALIAS", alias)
+    // console.log("PHOTOS", photos)
 
     const scrollX = useRef(new Animated.Value(0)).current;
     
@@ -45,10 +87,10 @@ export default function ProfileScreen({ navigation }) {
                     <Text style={styles.gender}>Gender</Text>
                     <View style={styles.nameAge}>
                         <View style={styles.nameWrapper}>
-                            <Text style={[styles.title, styles.name]}>Name</Text>
+                            <Text style={[styles.title, styles.name]}>{alias}</Text>
                         </View>
                         <View style={styles.ageWrapper}>
-                            <Text style={[styles.title, styles.age]}>Age</Text>
+                            <Text style={[styles.title, styles.age]}>{age}</Text>
                         </View>
                     </View>
                     <View style={styles.descriptionSection}>
