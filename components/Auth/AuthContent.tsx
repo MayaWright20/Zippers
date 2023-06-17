@@ -63,36 +63,35 @@ export default function AuthContent({ isLogin, onAuthenticate, showModal }) {
             });
             return;
         }
-
-
-
-
-
         
 
-        // const cityRef = doc(db, 'cities', 'BJ');
-        // setDoc(cityRef, { capital: true }, { merge: true });
-        
-        
+        function runEvery24Hours() {
+            // Your code here
+            console.log('This function runs every 24 hours');
+            addEmailAgeFirestore()
+
+            
+        }
+
+        function startTimer() {
+            // Calculate the time remaining until the next 24-hour mark
+            const now = new Date();
+            const next24Hours = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+            const timeUntilNext24Hours = next24Hours - now;
+
+            // Set an interval that runs the function after every 24 hours
+            setInterval(runEvery24Hours, timeUntilNext24Hours);
+        }
+
+        // Start the timer
+        startTimer();
+
         async function addEmailAgeFirestore() {
             try {
                 console.log('add to firestore');
-                // const docRef = await addDoc(collection(db, "userDetails"), {
-                //     email: email,
-                //     age: ageInYears
-                // });
-                // const cityRef = doc(db, 'cities', 'BJ');
-                // setDoc(cityRef, { capital: true }, { merge: true });
-                
-
-                //need to access the phone number 
-                // await setDoc(doc(db, phoneNumber, "userDetails"), {
-                //     email: email,
-                //     age: ageInYears
-                // }, { merge: true });
-
                 await setDoc(doc(db, phoneNumber, "userDetails"), {
                     email: email,
+                    // this function needs to run every 24 hours
                     age: ageInYears
                 }, { merge: true });
 
@@ -103,7 +102,7 @@ export default function AuthContent({ isLogin, onAuthenticate, showModal }) {
                 console.error("Error adding document:", e);
             }
         }
-        addEmailAgeFirestore()
+        
         onAuthenticate({ email, password });
     }
 

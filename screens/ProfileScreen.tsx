@@ -33,6 +33,7 @@ export default function ProfileScreen({ navigation }) {
                         setAge(data.age);
                         setAlias(data.alias);
                         // setPhotos(data.photos);
+                        console.log("DATA.PHOTOS", data.photos)
 
                 } else {
                     // docSnap.data() will be undefined in this case
@@ -44,9 +45,9 @@ export default function ProfileScreen({ navigation }) {
     }
 
 
-    useEffect(()=>{
+    useLayoutEffect(()=>{
         getUserDetails()
-    },[])
+    },[age, alias])
     
     
     console.log("AGE", age)
@@ -70,6 +71,7 @@ export default function ProfileScreen({ navigation }) {
                     </Pressable>
                     <CircleButton onPress={settingsButtonHandler} style={styles.settingsButton} backgroundColor={COLORS.LIGHT_BLUE} emoji="⚙️" />
                 </View>
+                {/* //change to flatlist */}
                 <ScrollView horizontal={true}
                     pagingEnabled
                     showsHorizontalScrollIndicator={false}

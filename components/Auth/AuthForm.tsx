@@ -86,7 +86,7 @@ export default function AuthForm({ isLogin, onSubmit, credentialsInvalid, showMo
             keyboardType="email-address"
             isInvalid={emailIsInvalid}
             placeholder={null}
-            />
+            secureTextEntry={false} editable={undefined} maxLength={undefined} secure={undefined}            />
             {!isLogin && (
                 <FormInput label="Confirm Email" labelStyle={{ color: 'black' }} inputStyle={{ backgroundColor: !isLogin ? COLORS.LIGHT_AQUA : COLORS.LIGHT_BLUE }}
                 onChangeText={updateInputValueHandler.bind(this, 'confirmEmail')}
@@ -95,53 +95,54 @@ export default function AuthForm({ isLogin, onSubmit, credentialsInvalid, showMo
                 isInvalid={emailsDontMatch}
                 placeholder={null}
                 secure
-                />
+                secureTextEntry={false} editable={undefined} maxLength={undefined}                />
             )}
             <FormInput label="Password" labelStyle={{ color: 'black' }} inputStyle={{ backgroundColor: !isLogin ? COLORS.LIGHT_AQUA : COLORS.LIGHT_BLUE }}
             onChangeText={updateInputValueHandler.bind(this, 'password')}
             secure
             placeholder={null}
             value={enteredPassword}
-            isInvalid={passwordIsInvalid}
-            />
+            secureTextEntry={true}
+            // value={hidePassword}
+            isInvalid={passwordIsInvalid} editable={undefined} maxLength={undefined} keyboardType={undefined}            />
             {!isLogin && (
                 <FormInput label="Confirm Password" labelStyle={{ color: 'black' }} inputStyle={{ backgroundColor: !isLogin ? COLORS.LIGHT_AQUA : COLORS.LIGHT_BLUE }}
-                onChangeText={updateInputValueHandler.bind(this,'confirmPassword')}
+                onChangeText={updateInputValueHandler.bind(this, 'confirmPassword')}
                 placeholder={null}
                 value={enteredConfirmPassword}
                 isInvalid={passwordsDontMatch}
                 secure
-                />
+                secureTextEntry={true} editable={undefined} maxLength={undefined} keyboardType={undefined}                />
             )}
             {!isLogin && (
                 <View style={styles.dateOfBirthWrapper}>
-                    <FormInput label="Date of Birth" labelStyle={{ color: 'black' }} inputStyle={[styles.dateOfBirth, {backgroundColor: !isLogin ? COLORS.LIGHT_AQUA : COLORS.LIGHT_BLUE}]}
-                        onChangeText={updateInputValueHandler.bind(this, 'dayOfBirth')}
-                        value={enteredDayOfBirth}
-                        placeholder="D"
-                        keyboardType="number-pad"
-                        isInvalid={dayOfBirthIsInvalid}
-                        secure
-                        maxLength={2}
-                    />
-                    <FormInput label="" labelStyle={{ color: 'black' }} inputStyle={[styles.dateOfBirth, {backgroundColor: !isLogin ? COLORS.LIGHT_AQUA : COLORS.LIGHT_BLUE}]}
-                        onChangeText={updateInputValueHandler.bind(this, 'monthOfBirth')}
-                        value={enteredMonthOfBirth}
-                        keyboardType="number-pad"
-                        placeholder="M"
-                        isInvalid={monthOfBirthIsInvalid}
-                        secure
-                        maxLength={2}
-                    />
-                    <FormInput label="" labelStyle={{ color: 'black' }} inputStyle={[styles.dateOfBirth, {backgroundColor: !isLogin ? COLORS.LIGHT_AQUA : COLORS.LIGHT_BLUE}]}
-                        onChangeText={updateInputValueHandler.bind(this, 'yearOfBirth')}
-                        value={enteredYearOfBirth}
-                        placeholder="Y"
-                        keyboardType="number-pad"
-                        isInvalid={yearOfBirthIsInvalid}
-                        secure
-                        maxLength={4}
-                    />
+                    <FormInput label="Date of Birth" labelStyle={{ color: 'black' }} inputStyle={[styles.dateOfBirth, { backgroundColor: !isLogin ? COLORS.LIGHT_AQUA : COLORS.LIGHT_BLUE }]}
+                    onChangeText={updateInputValueHandler.bind(this, 'dayOfBirth')}
+                    value={enteredDayOfBirth}
+                    placeholder="D"
+                    keyboardType="number-pad"
+                    isInvalid={dayOfBirthIsInvalid}
+                    secure
+                    maxLength={2}
+                    secureTextEntry={false} editable={undefined}                    />
+                    <FormInput label="" labelStyle={{ color: 'black' }} inputStyle={[styles.dateOfBirth, { backgroundColor: !isLogin ? COLORS.LIGHT_AQUA : COLORS.LIGHT_BLUE }]}
+                    onChangeText={updateInputValueHandler.bind(this, 'monthOfBirth')}
+                    value={enteredMonthOfBirth}
+                    keyboardType="number-pad"
+                    placeholder="M"
+                    isInvalid={monthOfBirthIsInvalid}
+                    secure
+                    maxLength={2}
+                    secureTextEntry={false} editable={undefined}                    />
+                    <FormInput label="" labelStyle={{ color: 'black' }} inputStyle={[styles.dateOfBirth, { backgroundColor: !isLogin ? COLORS.LIGHT_AQUA : COLORS.LIGHT_BLUE }]}
+                    onChangeText={updateInputValueHandler.bind(this, 'yearOfBirth')}
+                    value={enteredYearOfBirth}
+                    placeholder="Y"
+                    keyboardType="number-pad"
+                    isInvalid={yearOfBirthIsInvalid}
+                    secure
+                    maxLength={4}
+                    secureTextEntry={false} editable={undefined}                    />
                 </View>
             )}
             <Button title={ !isLogin ? 'Next 👉' : 'Log in 👉'} onPress={submitHandler}/>

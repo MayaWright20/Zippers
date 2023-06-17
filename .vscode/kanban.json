@@ -5,10 +5,6 @@
             "title": "Bugs",
             "tasks": [
                 {
-                    "text": "if user signs up and gets a sms text with a code, they can go straight to login without using the code, request another code and use the new login code. (I think it works the same on hinge - need to test)",
-                    "id": "cli4he009000a40649ovd0u86"
-                },
-                {
                     "text": "update gitignore so that all the secrets ect arent in the git commits",
                     "id": "cli4apjsx000a4064mzuiyf5k"
                 },
@@ -27,6 +23,18 @@
         {
             "title": "To-Do",
             "tasks": [
+                {
+                    "text": "maybe age in years should be updated on every login..... but then how will the data update if the person uses a token to stay logged in over a long period of time where their age in years would change",
+                    "id": "clizszrvx000a40642hxg4ykk"
+                },
+                {
+                    "text": "add hobbies and about section and sent to profile screen",
+                    "id": "cliyl5nd4000b4064v0i1zarh"
+                },
+                {
+                    "text": "change login/ sign up so password become hidden when typing it in",
+                    "id": "cliyl3etc000a4064dahkwh4x"
+                },
                 {
                     "text": "Add functionality in chat: \n\n- contact details button -if person requests contact details you have a week to respond or else you disconnect from each other\n\n- meet up button - sends details or where and when to meet \n\n- other 'fun' functionalities",
                     "id": "clixjxz2w000a4064ov4n5ak9"
@@ -48,11 +56,7 @@
                     "id": "clhpc4t1a000b406432yltw25"
                 },
                 {
-                    "text": "\n\nsend the information about the profile to the chat screen. \n\n",
-                    "id": "clhpc40pc000a4064xo3ybpxb"
-                },
-                {
-                    "text": "set up chat ability",
+                    "text": "set up chat ability https://socket.io/how-to/use-with-react",
                     "id": "clhq6ihm4000c4064ubinvj94"
                 },
                 {
@@ -71,8 +75,8 @@
             "title": "Doing",
             "tasks": [
                 {
-                    "text": "change firebase functionality so that the userdetails is created on a single document. link this to the uid\n\nhttps://firebase.google.com/docs/firestore/manage-data/add-data",
-                    "id": "clixjlknb000a4064vjqfjp70"
+                    "text": "\n\nsend the information about the profile profile screen. \n- name\n- age\n- photos\nhttps://firebase.google.com/docs/firestore/query-data/get-data",
+                    "id": "clhpc40pc000a4064xo3ybpxb"
                 }
             ],
             "id": "clhnlm5vc000d4064l6gmren9",
@@ -81,6 +85,14 @@
         {
             "title": "Done",
             "tasks": [
+                {
+                    "text": "if user signs up and gets a sms text with a code, they can go straight to login without using the code, request another code and use the new login code. (I think it works the same on hinge - need to test)",
+                    "id": "cli4he009000a40649ovd0u86"
+                },
+                {
+                    "text": "change firebase functionality so that the userdetails is created on a single document. link this to the uid\n\nhttps://firebase.google.com/docs/firestore/manage-data/add-data",
+                    "id": "clixjlknb000a4064vjqfjp70"
+                },
                 {
                     "text": "add firebase functionality for setting up details for the profile",
                     "id": "clhpc6ekl000c4064nk15tpcb"
@@ -117,6 +129,10 @@
             "title": "Notes",
             "tasks": [
                 {
+                    "text": "profile screen loads name, alias, age, 3 times because its in useEffect.... so component will mount, component did mount, component will unmount",
+                    "id": "cliyl6ubi000c4064kakuvfvz"
+                },
+                {
                     "text": "arrow functions take care of the bind key word and this so  you dont need to use this or bind",
                     "id": "clhyq40fd000b4064vhnv1j1w"
                 },
@@ -131,5 +147,5 @@
     ],
     "autosave": true,
     "saveToFile": true,
-    "timestamp": 1686858692770
+    "timestamp": 1687020782064
 }
