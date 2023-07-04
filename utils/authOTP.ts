@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FIREBASE_URL} from "@env";
+import { FIREBASE_URL } from "@env";
 
 export async function createUser( enteredPhoneNumber,setHasCode, hasCode, setEditable ){
     try{

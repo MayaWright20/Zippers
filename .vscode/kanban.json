@@ -5,6 +5,10 @@
             "title": "Bugs",
             "tasks": [
                 {
+                    "text": "if the emails are different on the page after the sign up - it will still go to next sign up page - full name ect.",
+                    "id": "cljoij2zv000a4064059j5fxi"
+                },
+                {
                     "text": "update gitignore so that all the secrets ect arent in the git commits",
                     "id": "cli4apjsx000a4064mzuiyf5k"
                 },
@@ -147,5 +151,5 @@
     ],
     "autosave": true,
     "saveToFile": true,
-    "timestamp": 1687020782064
+    "timestamp": 1688488663918
 }

@@ -175,7 +175,7 @@ export default function AuthOTP({ isLogin, credentialsInvalid, onSubmit }) {
                         maxLength={1} 
                         editable={undefined}/>
                 </View> : null}
-            <Button title={title} onPress={!hasCode ? getCodeHandler : submitCodeHandler} />
+            <Button title={title} onPress={ !hasCode ? getCodeHandler : submitCodeHandler} />
         </View>
     )
 }
